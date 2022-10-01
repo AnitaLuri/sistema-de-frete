@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum profile: { regular: 0, administrator: 5, inactive: 9 }
+  validates :name, presence: true
 end
