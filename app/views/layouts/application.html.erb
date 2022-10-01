@@ -10,6 +10,23 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <h1>Sistema de Frete</h1>
+      <nav>
+        <% if user_signed_in? %>
+          <%= current_user.email %>  |
+          <%= link_to 'Sair', root_path %>
+        <% else %>
+          <%= link_to 'Entrar', new_user_session_url %>
+        <% end %>
+      </nav>
+    </header>
+    <main>
+      <div>
+        <%= alert %>
+        <%= notice %>
+      </div>
+      <%= yield %>
+    </main>
   </body>
 </html>

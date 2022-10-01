@@ -1,1 +1,17 @@
-<h1>Sistema de Frete</h1>
+<h2>Modalidades de Transporte</h2>
+
+<% if @transport_modes.empty? %>
+  <p>Nenhuma Modalidade de Transporte cadastrada.</p>
+<% end %>
+
+<% @transport_modes.each do |mode| %>
+  <dl>
+    <dt><%= mode.name %></dt>
+    <dd>
+      <%= mode.minimum_distance %>
+    </dd>
+    <dd>
+      <%= mode.maximum_distance %>
+    </dd>
+  </dl>
+<% end %>
