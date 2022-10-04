@@ -1,0 +1,44 @@
+<h2>Nova Modalidade de Transporte</h2>
+
+<% if(@transport_mode.errors.any?) %>
+  <p>Verifique os erros: </p>
+  <ul>
+    <% @transport_mode.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @transport_mode do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div><br />
+
+  <div>
+    <%= form.label :minimum_distance %>
+    <%= form.number_field :minimum_distance %>
+  </div><br />
+
+  <div>
+    <%= form.label :maximum_distance %>
+    <%= form.number_field :maximum_distance %>
+  </div><br />
+
+  <div>
+    <%= form.label :minimum_weight %>
+    <%= form.number_field :minimum_weight %>
+  </div><br />
+
+  <div>
+    <%= form.label :maximum_weight %>
+    <%= form.number_field :maximum_weight %>
+  </div><br />
+
+  <div>
+    <%= form.label :fixed_value %>
+    <%= form.text_field :fixed_value %>
+  </div><br />
+
+  <%= form.submit %>
+<% end %>
