@@ -1,6 +1,11 @@
 class TransportModesController < ApplicationController
+  before_action :authenticate_user!
   def new
-   @transport_mode = TransportMode.new()
+    @transport_mode = TransportMode.new()
+    if current_user.profile != "administrator"
+      flash[:alert] = "Você não possui permissão."
+      return redirect_to root_path
+    end
   end
 
   def create

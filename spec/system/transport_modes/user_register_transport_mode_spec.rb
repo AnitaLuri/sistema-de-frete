@@ -3,7 +3,9 @@ require 'rails_helper'
 describe 'Usuario cadastra modalidade de transporte' do
   it 'com sucesso' do
     #Arrange
+    user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 5)
     #Act
+    login_as(user)
     visit root_path
     click_on 'Cadastrar Nova Modalidade'
     fill_in 'Nome', with: 'Motocicleta'
@@ -22,7 +24,9 @@ describe 'Usuario cadastra modalidade de transporte' do
   end
   it 'com mesmo nome' do
     #Arrange
+    user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 5)
     #Act
+    login_as(user)
     visit root_path
     click_on 'Cadastrar Nova Modalidade'
     fill_in 'Nome', with: 'Motocicleta'
@@ -42,8 +46,10 @@ describe 'Usuario cadastra modalidade de transporte' do
   end
   it 'com informações faltando' do
     #Arrange
+    user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 5)
     TransportMode.create!(name: 'Motocicleta', minimum_distance: 1000, maximum_distance: 1000, minimum_weight: 500, maximum_weight: 50000, fixed_value: '20,00') 
     #Act
+    login_as(user)
     visit root_path
     click_on 'Cadastrar Nova Modalidade'
     fill_in 'Nome', with: 'Motocicleta'
@@ -56,5 +62,17 @@ describe 'Usuario cadastra modalidade de transporte' do
     #Assert
     expect(page).to have_content 'Modalidade de Transporte não cadastrada'
     expect(page).to have_content 'Nome já está em uso'
+  end
+  it 'e não tem permissão' do
+    #Arrange
+    user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 0)
+    TransportMode.create!(name: 'Motocicleta', minimum_distance: 1000, maximum_distance: 1000, minimum_weight: 500, maximum_weight: 50000, fixed_value: '20,00') 
+    #Act
+    login_as(user)
+    visit root_path
+    click_on 'Cadastrar Nova Modalidade'
+    #Assert
+    expect(current_path).to eq root_path 
+    expect(page).to have_content 'Você não possui permissão.'
   end
 end

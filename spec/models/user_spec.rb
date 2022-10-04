@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
     it 'falso quando o email é de outro domínio' do
       #Arrange
       user = User.new(name: 'Maria', email: 'teste@qualquerdominio.com.br', password: 'password')
-      other_user = User.new(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password')
+      other_user = User.new(name: 'Maria', email: 'regular@sistemadefrete.com.br', password: 'password')
       #Act
       #Assert
       expect(user.valid?).to eq false
