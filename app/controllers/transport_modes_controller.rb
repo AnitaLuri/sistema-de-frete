@@ -15,4 +15,8 @@ class TransportModesController < ApplicationController
       render 'new'
     end
   end
+
+  def show
+    @transport_mode = TransportMode.find(params[:id])
+  end
 end

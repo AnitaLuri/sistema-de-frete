@@ -8,7 +8,7 @@
 
 <% @transport_modes.each do |mode| %>
   <dl>
-    <dt><strong><%= link_to mode.name, mode.name %></strong></dt>
+    <dt><strong><%= link_to mode.name, mode %></strong></dt>
     <dd>
       Distância mínima: <%= mode.minimum_distance %>m
     </dd>

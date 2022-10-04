@@ -1,0 +1,28 @@
+<dl>
+  <dt>
+    <h2><%= TransportMode.model_name.human %>: <%= @transport_mode.name %></h2>
+  </dt>
+  <div>
+    <dd>
+      <strong><%= TransportMode.human_attribute_name(:minimum_distance) %>: </strong>
+      <%= @transport_mode.minimum_distance %>m
+    </dd>
+    <dd>
+      <strong><%= TransportMode.human_attribute_name(:maximum_distance) %>: </strong>
+      <%= @transport_mode.maximum_distance %>m
+    </dd>
+    <dd>
+      <strong><%= TransportMode.human_attribute_name(:minimum_weight) %>:  </strong>
+      <%= @transport_mode.minimum_weight %>g
+    </dd>
+    <dd>
+      <strong><%= TransportMode.human_attribute_name(:maximum_weight) %>:  </strong>
+      <%= @transport_mode.maximum_weight %>g
+    </dd>
+    <dd>
+      <strong><%= TransportMode.human_attribute_name(:fixed_value) %>:  </strong>
+      R$ <%= @transport_mode.fixed_value %>
+    </dd>
+  </div>
+</dl>
+
