@@ -3,4 +3,6 @@ class TransportMode < ApplicationRecord
             :maximum_weight, :fixed_value, presence: true
 
   validates :name, uniqueness: true
+
+  enum status: { active: 0, inactive: 5 }
 end

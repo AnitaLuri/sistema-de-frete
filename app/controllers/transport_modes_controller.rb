@@ -1,6 +1,6 @@
 class TransportModesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_transport_mode, only: [:show, :edit, :update ]
+  before_action :set_transport_mode, only: [:show, :edit, :update, :active, :inactive ]
  
   def new
     @transport_mode = TransportMode.new()
@@ -41,6 +41,24 @@ class TransportModesController < ApplicationController
     end
   end
 
+  def active
+    if current_user.profile != "administrator"
+      flash[:alert] = "Você não possui permissão."
+      return redirect_to root_path
+    end
+    @transport_mode.active!
+    flash[:notice] = "Modalidade de Transporte ativada."
+    redirect_to @transport_mode
+  end
+  def inactive
+    if current_user.profile != "administrator"
+      flash[:alert] = "Você não possui permissão."
+      return redirect_to root_path
+    end
+    @transport_mode.inactive!
+    flash[:notice] = "Modalidade de Transporte desativada."
+    redirect_to @transport_mode
+  end
 
   private
   def set_transport_mode
