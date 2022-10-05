@@ -1,0 +1,19 @@
+<h2>Frota de Veículos</h2>
+
+<% if @vehicles.empty? %>
+  <p>Nenhuma Veículo cadastrado.</p>
+<% end %>
+
+<%# <%= link_to('Cadastrar Novo Veículo', new_transport_mode_path)%> 
+
+<% @vehicles.each do |v| %>
+  <dl>
+    <dt><strong>Placa: <%= link_to v.plate, v %></strong></dt>
+    <dd>
+      Capacidade de carga: <%= v.weight_limit %>Kg
+    </dd>
+    <dd>
+      Modalidade de Transporte: <%= v.transport_mode.name %>
+    </dd>
+  </dl>
+<% end %>

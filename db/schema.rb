@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_04_185134) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_05_182915) do
   create_table "transport_modes", force: :cascade do |t|
     t.string "name"
     t.integer "minimum_distance"
@@ -37,4 +37,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_04_185134) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vehicles", force: :cascade do |t|
+    t.string "plate"
+    t.string "brand"
+    t.string "model"
+    t.integer "year"
+    t.integer "weight_limit"
+    t.integer "transport_mode_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+    t.index ["transport_mode_id"], name: "index_vehicles_on_transport_mode_id"
+  end
+
+  add_foreign_key "vehicles", "transport_modes"
 end

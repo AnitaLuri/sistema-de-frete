@@ -1,0 +1,34 @@
+<h2>Detalhes do Veículo</h2>
+
+<dl>
+  <dt>
+    <h2><%= Vehicle.model_name.human %> Placa: <%= @vehicle.plate %></h2>
+  </dt>
+  <div>
+    <dd>
+      <strong><%= Vehicle.human_attribute_name(:brand) %>: </strong>
+      <%= @vehicle.brand %>
+    </dd>
+    <dd>
+      <strong><%= Vehicle.human_attribute_name(:model) %>: </strong>
+      <%= @vehicle.model %>
+    </dd>
+    <dd>
+      <strong><%= Vehicle.human_attribute_name(:year) %>:  </strong>
+      <%= @vehicle.year %>
+    </dd>
+    <dd>
+      <strong><%= Vehicle.human_attribute_name(:weight_limit) %>:  </strong>
+      <%= @vehicle.weight_limit %>Kg
+    </dd>
+    <dd>
+      <strong><%= Vehicle.human_attribute_name(:transport_mode) %>:  </strong>
+      <%= @vehicle.transport_mode.name %>
+    </dd>
+    <dd>
+      <strong><%= Vehicle.human_attribute_name(:status) %>:  </strong>
+      <%= I18n.translate(@vehicle.status) %>
+    </dd>
+  </div>
+</dl>
+

@@ -1,0 +1,17 @@
+pt-BR:
+  available: 'Disponível' 
+  operation: 'Em operação' 
+  repair: 'Em manutenção' 
+  off: 'Baixado'
+  activerecord:
+    models:
+      vehicle: 'Veículo'
+    attributes:
+      vehicle:
+        plate: 'Placa'
+        brand: 'Marca'
+        model: 'Modelo'
+        year: 'Ano de fabricação'
+        weight_limit: 'Capacidade de carga'
+        transport_mode: 'Modalidade de Transporte'
+        status: 'Situação'

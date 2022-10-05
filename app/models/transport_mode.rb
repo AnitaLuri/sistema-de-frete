@@ -4,5 +4,7 @@ class TransportMode < ApplicationRecord
 
   validates :name, uniqueness: true
 
+  has_many :vehicles
+
   enum status: { active: 0, inactive: 5 }
 end
