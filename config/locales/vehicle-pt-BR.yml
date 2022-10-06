@@ -13,5 +13,6 @@ pt-BR:
         model: 'Modelo'
         year: 'Ano de fabricação'
         weight_limit: 'Capacidade de carga'
+        transport_mode_id: 'Modalidade de Transporte'
         transport_mode: 'Modalidade de Transporte'
         status: 'Situação'

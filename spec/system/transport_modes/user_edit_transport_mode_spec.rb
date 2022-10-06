@@ -17,7 +17,7 @@ describe 'Usuário edita uma modalidade' do
   it 'com sucesso' do
     #Arrange
     user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 5)
-    TransportMode.create!(name: 'Motocicleta', minimum_distance: 100, maximum_distance: 1000, 
+    TransportMode.create!(name: 'Motocicleta', minimum_distance: 1, maximum_distance: 100, 
                         minimum_weight: 500, maximum_weight: 50000, fixed_value: '20,00', status: 0) 
     #Act
     login_as(user)
@@ -25,13 +25,13 @@ describe 'Usuário edita uma modalidade' do
     click_on 'Motocicleta'
     click_on 'Editar'
     fill_in 'Nome', with: 'Carro pequeno'
-    fill_in 'Distância Máxima', with: '20000'
+    fill_in 'Distância Máxima', with: '200'
     fill_in 'Valor Fixo', with: '100,00'
     click_on 'Atualizar Modalidade de Transporte'
     #Assert
     expect(page).to have_content 'Modalidade de Transporte atualizada com sucesso!'
     expect(page).to have_content 'Carro pequeno'
-    expect(page).to have_content 'Distância Máxima: 20000m'
+    expect(page).to have_content 'Distância Máxima: 200Km'
     expect(page).to have_content 'Valor Fixo: R$ 100'
     expect(page).not_to have_content 'Motocicleta'
   end

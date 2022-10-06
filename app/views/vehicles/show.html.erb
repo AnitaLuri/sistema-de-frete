@@ -23,7 +23,7 @@
     </dd>
     <dd>
       <strong><%= Vehicle.human_attribute_name(:transport_mode) %>:  </strong>
-      <%= @vehicle.transport_mode.name %>
+      <%= link_to @vehicle.transport_mode.name, @vehicle.transport_mode %>
     </dd>
     <dd>
       <strong><%= Vehicle.human_attribute_name(:status) %>:  </strong>
