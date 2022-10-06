@@ -29,6 +29,26 @@ class VehiclesController < ApplicationController
     end
   end
 
+  def edit
+    if current_user.profile != "administrator"
+      flash[:alert] = "Você não possui permissão."
+      return redirect_to root_path
+    end
+    @vehicle = Vehicle.find(params[:id])
+    @transport_modes = TransportMode.all
+  end
+
+  def update
+    @vehicle = Vehicle.find(params[:id])
+    if @vehicle.update(vehicle_params)
+      flash[:notice] = "Veículo atualizado com sucesso!"
+      redirect_to @vehicle
+    else
+      @transport_modes = TransportMode.all
+      flash.now[:notice] = "Não foi possível atualizar veículo."
+      render 'new'
+    end
+  end
 
   private
   def vehicle_params

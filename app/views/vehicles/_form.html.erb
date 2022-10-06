@@ -1,0 +1,39 @@
+<%= form_with(model: @vehicle) do |form| %>
+  
+  <div>
+    <%= form.label :plate %>
+    <%= form.text_field :plate %>
+  </div><br />
+
+  <div>
+    <%= form.label :brand %>
+    <%= form.text_field :brand %>
+  </div><br />
+
+  <div>
+    <%= form.label :model %>
+    <%= form.text_field :model %>
+  </div><br />
+
+  <div>
+    <%= form.label :year %>
+    <%= form.number_field :year %>
+  </div><br />
+
+  <div>
+    <%= form.label :weight_limit %>
+    <%= form.number_field :weight_limit %>
+  </div><br />
+
+  <div>
+    <%= form.label :transport_mode_id %>
+    <%= form.collection_select :transport_mode_id, @transport_modes, :id, :name %>
+  </div><br />
+
+   <div>
+    <%= form.label :status %>
+    <%= form.select :status, [['Disponivel', :available], ['Em operação', :operation], ['Em manutenção', :repair], [ 'Baixado', :off]]  %>
+  </div><br />
+
+  <%= form.submit %>
+<% end %>
