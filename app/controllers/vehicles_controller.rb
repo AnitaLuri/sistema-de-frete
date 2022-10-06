@@ -10,12 +10,13 @@ class VehiclesController < ApplicationController
   end
 
   def new
-    if current_user.profile != "administrator"
+    if current_user.administrator?
+      @vehicle = Vehicle.new
+      @transport_modes = TransportMode.all
+    else
       flash[:alert] = "Você não possui permissão."
       return redirect_to root_path
     end
-    @vehicle = Vehicle.new
-    @transport_modes = TransportMode.all
   end
   def create
     @vehicle = Vehicle.new(vehicle_params)
@@ -30,12 +31,13 @@ class VehiclesController < ApplicationController
   end
 
   def edit
-    if current_user.profile != "administrator"
+    if current_user.administrator?
+      @vehicle = Vehicle.find(params[:id])
+      @transport_modes = TransportMode.all
+    else
       flash[:alert] = "Você não possui permissão."
       return redirect_to root_path
     end
-    @vehicle = Vehicle.find(params[:id])
-    @transport_modes = TransportMode.all
   end
 
   def update
@@ -48,6 +50,11 @@ class VehiclesController < ApplicationController
       flash.now[:notice] = "Não foi possível atualizar veículo."
       render 'new'
     end
+  end
+
+  def search
+    @search = params['query']
+    @vehicles = Vehicle.where("plate LIKE ?", "%#{@search}%")
   end
 
   private

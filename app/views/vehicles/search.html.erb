@@ -1,0 +1,43 @@
+<h2>Resultado da busca: <%= @search %> </h2>
+
+<p><%= @vehicles.count %> <%= Vehicle.model_name.human(count: @vehicles.count).downcase %> 
+<%= I18n.translate(:found, count: @vehicles.count) %></p>
+<br />
+
+<% @vehicles.each do |vehicle| %>
+<dl>
+    <dt>
+      <h3><%= Vehicle.model_name.human %> Placa: <%= vehicle.plate %></h3>
+    </dt>
+    <div>
+      <dd>
+        <strong><%= Vehicle.human_attribute_name(:brand) %>: </strong>
+        <%= vehicle.brand %>
+      </dd>
+      <dd>
+        <strong><%= Vehicle.human_attribute_name(:model) %>: </strong>
+        <%= vehicle.model %>
+      </dd>
+      <dd>
+        <strong><%= Vehicle.human_attribute_name(:year) %>:  </strong>
+        <%= vehicle.year %>
+      </dd>
+      <dd>
+        <strong><%= Vehicle.human_attribute_name(:weight_limit) %>:  </strong>
+        <%= vehicle.weight_limit %>Kg
+      </dd>
+      <dd>
+        <strong><%= Vehicle.human_attribute_name(:transport_mode) %>:  </strong>
+        <%= link_to vehicle.transport_mode.name, vehicle.transport_mode %>
+      </dd>
+      <dd>
+        <strong><%= Vehicle.human_attribute_name(:status) %>:  </strong>
+        <%= I18n.translate(vehicle.status) %>
+      </dd>
+    </div>
+  </dl>
+  <div>
+    <%= link_to 'Editar', edit_vehicle_path(vehicle.id) %>
+  </div>
+  <br />
+<% end %>

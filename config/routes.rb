@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     post 'active', on: :member
     post 'inactive', on: :member
   end
-  resources :vehicles, only: [:index, :show, :new, :create, :edit, :update]
+  resources :vehicles, only: [:index, :show, :new, :create, :edit, :update] do
+    get 'search', on: :collection
+  end
 end

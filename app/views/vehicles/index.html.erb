@@ -1,5 +1,17 @@
 <h2>Frota de Veículos</h2>
 
+<br />
+
+<div>
+  <%= form_with(url: search_vehicles_path, method: :get) do |f| %>
+    <%= f.label :query, 'Buscar Veículo' %>
+    <%= f.text_field :query %>
+    <%= f.submit 'Buscar' %>
+  <% end %>
+</div>
+
+<br />
+
 <% if @vehicles.empty? %>
   <p>Nenhuma Veículo cadastrado.</p>
 <% end %>
