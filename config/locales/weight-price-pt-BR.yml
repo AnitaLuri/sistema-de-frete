@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      weight_price: 
+        one: 'Preço por Peso'
+        other: 'Proços por Peso'
+    attributes:
+      weight_price:
+        initial_weight: 'Peso inicial'
+        ending_weight: 'Peso final'
+        km_value: 'Valor por Km'
+        transport_mode_id: 'Modalidade de Transporte'
+        transport_mode: 'Modalidade de Transporte'

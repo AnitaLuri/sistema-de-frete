@@ -28,6 +28,9 @@ class VehiclesController < ApplicationController
       flash.now[:notice] = "Veículo não cadastrado."
       render 'new'
     end
+    # function substituir(x) {
+    #   x.value = x.value.replace(",", ".")
+    # }
   end
 
   def edit

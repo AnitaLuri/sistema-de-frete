@@ -33,3 +33,50 @@
 <div>
   <%= link_to 'Editar', edit_transport_mode_path %>
 </div>
+
+<br />
+<br />
+
+<h3> <%= link_to 'Preços por Peso', weight_prices_path %></h3>
+<%= link_to('Cadastrar Preço por Peso', new_weight_price_path) %>
+<% if @transport_mode.weight_price.size > 0 %>
+  <table>
+    <thead>
+      <tr>
+        <th>Intervalo   </th>
+        <th>|   Valor por Km</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @transport_mode.weight_price.each do |price| %>
+        <tr>
+          <td><%= price.initial_weight%>Kg  -  <%= price.ending_weight%>Kg</td> 
+          <td>|   <%= number_to_currency(price.km_value) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %> 
+
+<br />
+<br />
+
+<%# <% if @transport_mode.weight_price.size > 0 %> 
+  <h3>Preços por Distância</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Intervalo   </th>
+        <th>|   Taxa</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%# <% @supplier.product_models.each do |product| %> %>
+        <tr>
+          <%# <td><%= link_to product.name, product %> | </td>  %>
+          <%# <td><%= product.sku %></td> %>
+        </tr>
+      <%# <% end %> %>
+    </tbody>
+  </table>
+<%# <% end  %> 

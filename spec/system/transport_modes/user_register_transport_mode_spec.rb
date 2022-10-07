@@ -47,7 +47,8 @@ describe 'Usuario cadastra modalidade de transporte' do
   it 'com informações faltando' do
     #Arrange
     user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 5)
-    TransportMode.create!(name: 'Motocicleta', minimum_distance: 1000, maximum_distance: 1000, minimum_weight: 500, maximum_weight: 50000, fixed_value: '20,00') 
+    TransportMode.create!(name: 'Motocicleta', minimum_distance: 1000, maximum_distance: 1000, 
+                          minimum_weight: 500, maximum_weight: 50000, fixed_value: '20,00') 
     #Act
     login_as(user)
     visit root_path
@@ -66,7 +67,8 @@ describe 'Usuario cadastra modalidade de transporte' do
   it 'e não tem permissão' do
     #Arrange
     user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 0)
-    TransportMode.create!(name: 'Motocicleta', minimum_distance: 1000, maximum_distance: 1000, minimum_weight: 500, maximum_weight: 50000, fixed_value: '20,00') 
+    TransportMode.create!(name: 'Motocicleta', minimum_distance: 1000, maximum_distance: 1000, 
+                          minimum_weight: 500, maximum_weight: 50000, fixed_value: '20,00') 
     #Act
     login_as(user)
     visit root_path

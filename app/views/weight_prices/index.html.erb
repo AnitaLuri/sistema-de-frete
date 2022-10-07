@@ -1,0 +1,22 @@
+<h2>Tabelas de Preços</h2>
+<br />
+
+<h3>Preços por Peso</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Intervalo   </th>
+      <th>|   Valor por Km</th>
+      <th>|   Modalidade de Transporte</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @weight_prices.each do |price| %>
+      <tr>
+        <td><%= price.initial_weight%>Kg   -   <%= price.ending_weight%>Kg</td> 
+        <td>| <%= number_to_currency(price.km_value) %></td>
+        <td>| <%= link_to price.transport_mode.name, price.transport_mode %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
