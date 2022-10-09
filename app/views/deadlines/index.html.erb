@@ -1,0 +1,21 @@
+<h2>Prazo de Entrega</h2>
+<br />
+
+<table>
+  <thead>
+    <tr>
+      <th>Distância   </th>
+      <th>|   Prazo </th>
+      <th>|   Modalidade de Transporte</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @deadlines.each do |time| %>
+      <tr>
+        <td><%= time.start%>Km   -   <%= time.limit%>Km</td> 
+        <td>| <%= time.time %>h</td>
+        <td>| <%= link_to time.transport_mode.name, time.transport_mode %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
