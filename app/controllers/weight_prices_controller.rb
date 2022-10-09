@@ -1,4 +1,6 @@
 class WeightPricesController < ApplicationController
+  before_action :authenticate_user!
+
   def new 
     @weight_price = WeightPrice.new()
     @transport_modes = TransportMode.all
@@ -11,11 +13,11 @@ class WeightPricesController < ApplicationController
   def create
     @weight_price = WeightPrice.new(weight_price_params)
     if @weight_price.save()
-      flash[:notice] = "Veículo cadastrado com sucesso!"
+      flash[:notice] = "Preço cadastrado com sucesso!"
       redirect_to weight_prices_path
     else
       @transport_modes = TransportMode.all
-      flash.now[:notice] = "Veículo não cadastrado."
+      flash.now[:notice] = "Preço não cadastrado."
       render 'new'
     end
   end

@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      distance_price: 
+        one: 'Preço por Distância'
+        other: 'Proços por Distância'
+    attributes:
+      distance_price:
+        initial_distance: 'Distância inicial'
+        ending_distance: 'Distância final'
+        price: 'Taxa'
+        transport_mode_id: 'Modalidade de Transporte'
+        transport_mode: 'Modalidade de Transporte'

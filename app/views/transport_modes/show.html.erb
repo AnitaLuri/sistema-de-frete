@@ -61,8 +61,9 @@
 <br />
 <br />
 
-<%# <% if @transport_mode.weight_price.size > 0 %> 
-  <h3>Preços por Distância</h3>
+<h3> <%= link_to 'Preços por Distância', distance_prices_path %></h3>
+<%= link_to('Cadastrar Preço por Distância', new_distance_price_path) %>
+<% if @transport_mode.distance_price.size > 0 %>
   <table>
     <thead>
       <tr>
@@ -71,12 +72,12 @@
       </tr>
     </thead>
     <tbody>
-      <%# <% @supplier.product_models.each do |product| %> %>
+      <% @transport_mode.distance_price.each do |price| %>
         <tr>
-          <%# <td><%= link_to product.name, product %> | </td>  %>
-          <%# <td><%= product.sku %></td> %>
+          <td><%= price.initial_distance%>Km  -  <%= price.ending_distance%>Km</td> 
+          <td>|   <%= number_to_currency(price.price) %></td>
         </tr>
-      <%# <% end %> %>
+      <% end %>
     </tbody>
   </table>
-<%# <% end  %> 
+<% end %> 

@@ -1,0 +1,34 @@
+<h2>Cadastro de Preço por Distância</h2>
+
+<% if(@distance_price.errors.any?) %>
+  <p>Verifique os erros: </p>
+  <ul>
+    <% @distance_price.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @distance_price do |form| %>
+  <div>
+    <%= form.label :initial_distance %>
+    <%= form.number_field :initial_distance %>
+  </div><br />
+
+  <div>
+    <%= form.label :ending_distance %>
+    <%= form.number_field :ending_distance %>
+  </div><br />
+
+  <div>
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div><br />
+
+  <div>
+    <%= form.label :transport_mode_id %>
+    <%= form.collection_select :transport_mode_id, @transport_modes, :id, :name %>
+  </div><br />
+
+  <%= form.submit %>
+<% end %>

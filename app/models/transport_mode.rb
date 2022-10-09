@@ -6,6 +6,7 @@ class TransportMode < ApplicationRecord
 
   has_many :vehicles
   has_many :weight_price
+  has_many :distance_price
 
   enum status: { active: 0, inactive: 5 }
 end

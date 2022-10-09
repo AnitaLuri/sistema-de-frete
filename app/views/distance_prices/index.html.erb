@@ -1,19 +1,19 @@
-<h3>Tabela de Preços por Peso</h3>
+<h3>Tabelas de Preços por Distância</h3>
 <br />
 
 <table>
   <thead>
     <tr>
       <th>Intervalo   </th>
-      <th>|   Valor por Km</th>
+      <th>|   Taxa </th>
       <th>|   Modalidade de Transporte</th>
     </tr>
   </thead>
   <tbody>
-    <% @weight_prices.each do |price| %>
+    <% @distance_prices.each do |price| %>
       <tr>
-        <td><%= price.initial_weight%>Kg   -   <%= price.ending_weight%>Kg</td> 
-        <td>| <%= number_to_currency(price.km_value) %></td>
+        <td><%= price.initial_distance%>Km   -   <%= price.ending_distance%>Km</td> 
+        <td>| <%= number_to_currency(price.price) %></td>
         <td>| <%= link_to price.transport_mode.name, price.transport_mode %></td>
       </tr>
     <% end %>

@@ -10,4 +10,6 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
   resources :weight_prices, only: [:new, :create, :index, :edit, :update]
+  resources :distance_prices, only: [:new, :create, :index, :edit, :update]
+
 end
