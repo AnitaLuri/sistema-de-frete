@@ -1,0 +1,22 @@
+pt-BR:
+  pending: 'Pendente'
+  progress: 'Em progresso'
+  concluded: 'Concluído'
+  activerecord:
+    models:
+      service_order: 
+        one: 'Ordem de Serviço'
+        other: 'Ordens de Serviço'
+    attributes:
+      service_order:
+        code: 'Código'
+        from: 'Origem'
+        to: 'Destino'
+        recipient: 'Destinatário'
+        distance: 'Distância'
+        product_code: 'Código do Produto'
+        width: 'Largura'
+        height: 'Altura'
+        depth: 'Profundidade'
+        weight: 'Peso'
+        status: 'Situação'

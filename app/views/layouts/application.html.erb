@@ -16,6 +16,7 @@
         <%= link_to 'Home', root_path %> |
         <%= link_to 'Veículos', vehicles_path %> |
         <%= link_to 'Prazo de Entrega', deadlines_path %> |
+        <%= link_to 'Ordens de Serviço', service_orders_path %> |
         <% if user_signed_in? %>
           <%= current_user.email %>  |
           <%= button_to 'Sair', destroy_user_session_path, method: :delete %>

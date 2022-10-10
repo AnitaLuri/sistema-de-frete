@@ -1,0 +1,17 @@
+<h2>Ordem de Serviço</h2>
+<%= link_to('Cadastrar Nova Ordem', new_service_order_path) %>
+<br />
+<br />
+<% @service_orders.each do |service_order|%>
+  <dl>
+    <dt><strong><%= ServiceOrder.human_attribute_name(:code) %>: </strong>
+    <%= link_to service_order.code, service_order %></dt>
+
+    <dd><strong><%= ServiceOrder.human_attribute_name(:recipient) %>: </strong>
+    <%= service_order.recipient %></dd>
+
+    <dd><strong><%= ServiceOrder.human_attribute_name(:status) %>: </strong>
+    <%= I18n.translate(service_order.status) %></dd>
+  </dl>
+
+<% end %>
