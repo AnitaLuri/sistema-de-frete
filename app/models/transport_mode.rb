@@ -5,8 +5,9 @@ class TransportMode < ApplicationRecord
   validates :name, uniqueness: true
 
   has_many :vehicles
-  has_many :weight_price
-  has_many :distance_price
+  has_many :weight_prices
+  has_many :distance_prices
+  has_many :deadlines
 
   enum status: { active: 0, inactive: 5 }
 end

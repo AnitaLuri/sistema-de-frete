@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   end
   resources :weight_prices, only: [:new, :create, :index, :edit, :update]
   resources :distance_prices, only: [:new, :create, :index, :edit, :update]
-  resources :deadlines, only: [:index]
+  resources :deadlines, only: [:index, :new, :create, :edit, :update]
 
 end

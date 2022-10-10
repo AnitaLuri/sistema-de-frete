@@ -1,0 +1,34 @@
+<h2>Cadastro de Prazo de Entrega</h2>
+
+<% if(@deadline.errors.any?) %>
+  <p>Verifique os erros: </p>
+  <ul>
+    <% @deadline.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @deadline do |form| %>
+  <div>
+    <%= form.label :start %>
+    <%= form.number_field :start %>
+  </div><br />
+
+  <div>
+    <%= form.label :limit %>
+    <%= form.number_field :limit %>
+  </div><br />
+
+  <div>
+    <%= form.label :time %>
+    <%= form.number_field :time %>
+  </div><br />
+
+  <div>
+    <%= form.label :transport_mode_id %>
+    <%= form.collection_select :transport_mode_id, @transport_modes, :id, :name %>
+  </div><br />
+
+  <%= form.submit %>
+<% end %>

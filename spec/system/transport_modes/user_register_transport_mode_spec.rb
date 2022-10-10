@@ -9,8 +9,8 @@ describe 'Usuario cadastra modalidade de transporte' do
     visit root_path
     click_on 'Cadastrar Nova Modalidade'
     fill_in 'Nome', with: 'Motocicleta'
-    fill_in 'Distância Mínima', with: '1000'
-    fill_in 'Distância Máxima', with: '10000'
+    fill_in 'Distância Mínima', with: '100'
+    fill_in 'Distância Máxima', with: '1000'
     fill_in 'Peso Mínimo', with: '100'
     fill_in 'Peso Máximo', with: '15000'
     fill_in 'Valor Fixo', with: '30,00'
@@ -19,8 +19,8 @@ describe 'Usuario cadastra modalidade de transporte' do
     expect(current_path).to eq root_path
     expect(page).to have_content 'Modalidade de Transporte criada com sucesso'
     expect(page).to have_content 'Motocicleta'
-    expect(page).to have_content 'Distância mínima: 1000m'
-    expect(page).to have_content 'Distância máxima: 10000m'
+    expect(page).to have_content 'Distância mínima: 100Km'
+    expect(page).to have_content 'Distância máxima: 1000Km'
   end
   it 'com mesmo nome' do
     #Arrange

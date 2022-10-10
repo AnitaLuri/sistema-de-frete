@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      deadline: 
+        one: 'Prazo de Entrega'
+        other: 'Prazos de Entrega'
+    attributes:
+      deadline:
+        start: 'Distância inicial'
+        limit: 'Distância limite'
+        time: 'Prazo'
+        transport_mode_id: 'Modalidade de Transporte'
+        transport_mode: 'Modalidade de Transporte'
