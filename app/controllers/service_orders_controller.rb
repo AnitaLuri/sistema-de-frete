@@ -5,6 +5,10 @@ class ServiceOrdersController < ApplicationController
     @service_orders = ServiceOrder.all
   end
 
+  def show
+    @service_order = ServiceOrder.find(params[:id])
+  end
+
   def new
     if current_user.administrator?
       @service_order = ServiceOrder.new()
@@ -13,7 +17,6 @@ class ServiceOrdersController < ApplicationController
       return redirect_to root_path
     end
   end
-
   def create
     @service_order = ServiceOrder.new(service_order_params)
     if @service_order.save()
@@ -24,11 +27,6 @@ class ServiceOrdersController < ApplicationController
       render 'new'
     end
   end
-
-  def show
-    @service_order = ServiceOrder.find(params[:id])
-  end
-
 
   private
   def service_order_params

@@ -1,6 +1,7 @@
 class ServiceOrder < ApplicationRecord
   validates :code, :from, :to, :distance, :recipient, :product_code, :width, :height, :depth, 
             :weight, :status, presence: true
+  validates :weight, :width, :height, :depth, numericality: { greater_than: 0 }
 
   enum status: { pending: 0, progress: 5, concluded: 9}
 

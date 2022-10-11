@@ -1,6 +1,10 @@
 class WeightPricesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @weight_prices = WeightPrice.all
+  end
+
   def new 
     @weight_price = WeightPrice.new()
     @transport_modes = TransportMode.all
@@ -9,7 +13,6 @@ class WeightPricesController < ApplicationController
       return redirect_to root_path
     end
   end
-  
   def create
     @weight_price = WeightPrice.new(weight_price_params)
     if @weight_price.save()
@@ -22,8 +25,25 @@ class WeightPricesController < ApplicationController
     end
   end
 
-  def index
-    @weight_prices = WeightPrice.all
+  def edit
+    if current_user.administrator?
+      @weight_price = WeightPrice.find(params[:id])
+      @transport_modes = TransportMode.all
+    else
+      flash[:alert] = "Você não possui permissão."
+      return redirect_to root_path
+    end
+  end
+  def update
+    @weight_price = WeightPrice.find(params[:id])
+    if @weight_price.update(weight_price_params)
+      flash[:notice] = "Preço atualizado com sucesso!"
+      redirect_to weight_prices_path
+    else
+      @transport_modes = TransportMode.all
+      flash.now[:notice] = "Não foi possível atualizar preço por peso."
+      render 'new'
+    end
   end
 
   private

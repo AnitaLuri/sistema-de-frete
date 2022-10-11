@@ -1,0 +1,23 @@
+<%= form_with model: @weight_price do |form| %>
+  <div>
+    <%= form.label :initial_weight %>
+    <%= form.number_field :initial_weight %>
+  </div><br />
+
+  <div>
+    <%= form.label :ending_weight %>
+    <%= form.number_field :ending_weight %>
+  </div><br />
+
+  <div>
+    <%= form.label :km_value %>
+    <%= form.text_field :km_value %>
+  </div><br />
+
+  <div>
+    <%= form.label :transport_mode_id %>
+    <%= form.collection_select :transport_mode_id, @transport_modes, :id, :name %>
+  </div><br />
+
+  <%= form.submit %>
+<% end %>

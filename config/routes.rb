@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :vehicles, only: [:index, :show, :new, :create, :edit, :update] do
     get 'search', on: :collection
   end
-  resources :weight_prices, only: [:new, :create, :index, :edit, :update]
+  resources :weight_prices, only: [:index, :new, :create, :edit, :update]
   resources :distance_prices, only: [:new, :create, :index, :edit, :update]
   resources :deadlines, only: [:index, :new, :create, :edit, :update]
   resources :service_orders, only: [:index, :new, :create, :show, :edit, :update]

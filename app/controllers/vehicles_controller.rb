@@ -28,9 +28,6 @@ class VehiclesController < ApplicationController
       flash.now[:notice] = "Veículo não cadastrado."
       render 'new'
     end
-    # function substituir(x) {
-    #   x.value = x.value.replace(",", ".")
-    # }
   end
 
   def edit
@@ -42,7 +39,6 @@ class VehiclesController < ApplicationController
       return redirect_to root_path
     end
   end
-
   def update
     @vehicle = Vehicle.find(params[:id])
     if @vehicle.update(vehicle_params)
