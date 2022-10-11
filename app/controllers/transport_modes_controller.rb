@@ -13,7 +13,7 @@ class TransportModesController < ApplicationController
     end
   end
   def create
-    @transport_mode = TransportMode.new(transport_mode_params)
+    @transport_mode = TransportMode.new(format_transport_mode_params)
     if @transport_mode.save
       flash[:notice] = 'Modalidade de Transporte criada com sucesso!' 
       redirect_to root_path
@@ -30,7 +30,7 @@ class TransportModesController < ApplicationController
     end
   end
   def update
-    if @transport_mode.update(transport_mode_params)
+    if @transport_mode.update(format_transport_mode_params)
       flash[:notice] = "Modalidade de Transporte atualizada com sucesso!"
       redirect_to transport_mode_path(@transport_mode.id)
     else
@@ -59,11 +59,18 @@ class TransportModesController < ApplicationController
   end
 
   private
+
   def set_transport_mode
     @transport_mode = TransportMode.find(params[:id])
   end
+
   def transport_mode_params
     transport_mode_params = params.require(:transport_mode).permit(:name, :minimum_distance, :maximum_distance, 
                                                                 :minimum_weight, :maximum_weight, :fixed_value)
+  end
+  def format_transport_mode_params
+    format_params = transport_mode_params
+    format_params[:fixed_value] = transport_mode_params[:fixed_value].gsub(',','.')
+    format_params
   end
 end

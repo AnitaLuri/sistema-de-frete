@@ -14,7 +14,7 @@ class WeightPricesController < ApplicationController
     end
   end
   def create
-    @weight_price = WeightPrice.new(weight_price_params)
+    @weight_price = WeightPrice.new(format_weight_price_params)
     if @weight_price.save()
       flash[:notice] = "Preço cadastrado com sucesso!"
       redirect_to weight_prices_path
@@ -36,7 +36,7 @@ class WeightPricesController < ApplicationController
   end
   def update
     @weight_price = WeightPrice.find(params[:id])
-    if @weight_price.update(weight_price_params)
+    if @weight_price.update(format_weight_price_params)
       flash[:notice] = "Preço atualizado com sucesso!"
       redirect_to weight_prices_path
     else
@@ -50,5 +50,10 @@ class WeightPricesController < ApplicationController
   def weight_price_params
     weight_price_params = params.require(:weight_price).permit(:initial_weight, :ending_weight, :km_value,
                                                                :transport_mode_id)
+  end
+  def format_weight_price_params
+    format_params = weight_price_params
+    format_params[:km_value] = weight_price_params[:km_value].gsub(',','.')
+    format_params
   end
 end

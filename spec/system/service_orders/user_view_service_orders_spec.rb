@@ -5,7 +5,7 @@ describe 'Usuário vê ordem de serviço' do
     #Arrange
     #Act
     visit root_path
-    click_on 'Ordens de Serviço'
+    click_on 'Ordens'
     #Assert
     expect(current_path).to eq new_user_session_path
   end
@@ -19,7 +19,7 @@ describe 'Usuário vê ordem de serviço' do
     #Act
     login_as(user)
     visit root_path
-    click_on 'Ordens de Serviço'
+    click_on 'Ordens'
     #Assert
     expect(page).to have_content 'Ordem de Serviço'
     expect(page).to have_content 'Destinatário: Maria Silva'

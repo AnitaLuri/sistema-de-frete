@@ -4,15 +4,15 @@
   <p>Nenhuma Modalidade de Transporte cadastrada.</p>
 <% end %>
 
-<%= link_to('Cadastrar Nova Modalidade', new_transport_mode_path)%>
+<%= link_to'Cadastrar Nova Modalidade', new_transport_mode_path, class:"btn btn-link"%>
 
 <% @transport_modes.each do |mode| %>
-  <dl>
-    <dt><strong><%= link_to mode.name, mode %></strong></dt>
+  <dl class="card" style="width: 18rem;">
+    <dt><strong><%= link_to mode.name, mode, class:"card-body" %></strong></dt>
     <dd>
       Distância mínima: <%= mode.minimum_distance %>Km
     </dd>
-    <dd>
+    <dd>  
       Distância máxima: <%= mode.maximum_distance %>Km
     </dd>
     <dd>

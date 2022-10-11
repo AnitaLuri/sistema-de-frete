@@ -12,7 +12,8 @@ describe 'Usuário edita preço por peso' do
     #Act
     login_as(user)
     visit root_path
-    click_on 'Valores por Peso'
+    click_on 'Tabelas de Preços'
+    click_on 'Por Peso'
     click_on 'Editar'
     fill_in 'Peso inicial', with: '600'
     fill_in 'Peso final', with: '1000'
@@ -35,7 +36,8 @@ describe 'Usuário edita preço por peso' do
     #Act
     login_as(user)
     visit root_path
-    click_on 'Valores por Peso'
+    click_on 'Tabelas de Preços'
+    click_on 'Por Peso'
     #Assert
     expect(page).not_to have_content 'Editar'
   end
@@ -50,7 +52,8 @@ describe 'Usuário edita preço por peso' do
     #Act
     login_as(user)
     visit root_path
-    click_on 'Valores por Peso'
+    click_on 'Tabelas de Preços'
+    click_on 'Por Peso'
     click_on 'Editar'
     fill_in 'Peso inicial', with: ''
     fill_in 'Peso final', with: ''

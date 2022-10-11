@@ -8,7 +8,7 @@ describe 'Usuário registra prazo de entrega' do
     #Act
     login_as(user)
     visit root_path
-    click_on 'Prazo de Entrega'
+    click_on 'Prazos'
     click_on 'Cadastrar Prazo de Entrega'
     #Assert
     expect(current_path).to eq root_path
@@ -44,7 +44,7 @@ describe 'Usuário registra prazo de entrega' do
     #Act
     login_as(user)
     visit root_path
-    click_on 'Prazo de Entrega'
+    click_on 'Prazos'
     click_on 'Cadastrar Prazo de Entrega'
     fill_in 'Distância inicial', with: ''
     fill_in 'Distância limite', with: ''

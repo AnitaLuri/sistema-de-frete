@@ -6,7 +6,7 @@ describe 'Usuário registra ordem de serviço' do
     #Act
     login_as(user)
     visit root_path
-    click_on 'Ordens de Serviço'
+    click_on 'Ordens'
     click_on 'Cadastrar Nova Ordem'
     #Assert
     expect(current_path).to eq root_path
@@ -18,7 +18,7 @@ describe 'Usuário registra ordem de serviço' do
     #Act
     login_as(user)
     visit root_path
-    click_on 'Ordens de Serviço'
+    click_on 'Ordens'
     click_on 'Cadastrar Nova Ordem'
     fill_in 'Origem', with: 'Av. Paulista, 500'
     fill_in 'Destino', with: 'Rua Jureia, 849'
@@ -47,7 +47,7 @@ describe 'Usuário registra ordem de serviço' do
     #Act
     login_as(user)
     visit root_path
-    click_on 'Ordens de Serviço'
+    click_on 'Ordens'
     click_on 'Cadastrar Nova Ordem'
     fill_in 'Origem', with: ''
     fill_in 'Destino', with: ''

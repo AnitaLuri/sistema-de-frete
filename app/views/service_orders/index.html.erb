@@ -1,9 +1,9 @@
 <h2>Ordem de Serviço</h2>
-<%= link_to('Cadastrar Nova Ordem', new_service_order_path) %>
+<%= link_to 'Cadastrar Nova Ordem', new_service_order_path, class:"btn btn-link" %>
 <br />
 <br />
 <% @service_orders.each do |service_order|%>
-  <dl>
+  <dl class="card">
     <dt><strong><%= ServiceOrder.human_attribute_name(:code) %>: </strong>
     <%= link_to service_order.code, service_order %></dt>
 

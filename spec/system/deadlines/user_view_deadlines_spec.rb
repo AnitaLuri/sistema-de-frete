@@ -5,7 +5,7 @@ describe 'Usuário ve prazos de entrega' do
     #Arrange
     #Act
     visit root_path
-    click_on 'Prazo de Entrega'
+    click_on 'Prazos'
     #Assert
     expect(current_path).to eq new_user_session_path
   end
@@ -18,7 +18,7 @@ describe 'Usuário ve prazos de entrega' do
     #Act
     login_as(user)
     visit root_path
-    click_on 'Prazo de Entrega'
+    click_on 'Prazos'
     #Assert
     expect(page).to have_content 'Distância'
     expect(page).to have_content '400Km - 800Km'

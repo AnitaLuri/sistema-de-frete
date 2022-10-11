@@ -16,10 +16,10 @@
   <p>Nenhuma Veículo cadastrado.</p>
 <% end %>
 
-<%= link_to('Cadastrar Novo Veículo', new_vehicle_path) %>
+<%= link_to 'Cadastrar Novo Veículo', new_vehicle_path, class:"btn btn-link" %>
 
 <% @vehicles.each do |v| %>
-  <dl>
+  <dl class="card" style="width: 18rem;">
     <dt><strong>Placa: <%= link_to v.plate, v %></strong></dt>
     <dd>
       Capacidade de carga: <%= v.weight_limit %>Kg

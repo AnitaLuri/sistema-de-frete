@@ -13,7 +13,8 @@ describe 'Usuário edita preço por distância' do
     #Act
     login_as(user)
     visit root_path
-    click_on 'Valores por Distância'
+    click_on 'Tabelas de Preços'
+    click_on 'Por Distância'
     click_on 'Editar'
     fill_in 'Distância inicial', with: '600'
     fill_in 'Distância final', with: '1200'
@@ -36,7 +37,8 @@ describe 'Usuário edita preço por distância' do
     #Act
     login_as(user)
     visit root_path
-    click_on 'Valores por Distância'
+    click_on 'Tabelas de Preços'
+    click_on 'Por Distância'
     #Assert
     expect(page).not_to have_content 'Editar'
   end
@@ -52,7 +54,8 @@ describe 'Usuário edita preço por distância' do
     #Act
     login_as(user)
     visit root_path
-    click_on 'Valores por Distância'
+    click_on 'Tabelas de Preços'
+    click_on 'Por Distância'
     click_on 'Editar'
     fill_in 'Distância inicial', with: ''
     fill_in 'Distância final', with: ''

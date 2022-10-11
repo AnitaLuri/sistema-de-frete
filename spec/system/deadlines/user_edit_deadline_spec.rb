@@ -12,7 +12,7 @@ describe 'Usuário edita prazos de entrega' do
     #Act
     login_as(user)
     visit root_path
-    click_on 'Prazo de Entrega'
+    click_on 'Prazos'
     click_on 'Editar'
     fill_in 'Distância inicial', with: '100'
     fill_in 'Distância limite', with: '400'
@@ -34,7 +34,7 @@ describe 'Usuário edita prazos de entrega' do
     #Act
     login_as(user)
     visit root_path
-    click_on 'Prazo de Entrega'
+    click_on 'Prazos'
     #Assert
     expect(page).not_to have_content 'Editar'
   end
@@ -49,7 +49,7 @@ describe 'Usuário edita prazos de entrega' do
     #Act
     login_as(user)
     visit root_path
-    click_on 'Prazo de Entrega'
+    click_on 'Prazos'
     click_on 'Editar'
     fill_in 'Distância inicial', with: ''
     fill_in 'Distância limite', with: ''
