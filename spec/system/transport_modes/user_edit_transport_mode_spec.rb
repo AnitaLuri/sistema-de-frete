@@ -51,23 +51,4 @@ describe 'Usuário edita uma modalidade' do
     #Assert
     expect(page).to have_content 'Não foi possível atualizar a Modalidade de Transporte.'
   end
-  it 'com sucesso' do
-    #Arrange
-    user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 5)
-    TransportMode.create!(name: 'Motocicleta', minimum_distance: 100, maximum_distance: 1000, 
-                        minimum_weight: 500, maximum_weight: 50000, fixed_value: '20,00', status: 0) 
-    #Act
-    login_as(user)
-    visit root_path
-    click_on 'Motocicleta'
-    click_on 'Editar'
-    fill_in 'Nome', with: 'Carro pequeno'
-    fill_in 'Distância Máxima', with: '20000'
-    fill_in 'Valor Fixo', with: '100,00'
-    click_on 'Desativar'
-    #Assert
-    expect(page).to have_content 'Modalidade de Transporte desativada'
-    expect(page).to have_content 'Status: Inativa'
-    expect(page).not_to have_content 'Ativa'
-  end
 end

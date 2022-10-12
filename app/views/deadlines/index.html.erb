@@ -21,7 +21,7 @@
         <td>| <%= link_to time.transport_mode.name, time.transport_mode %></td>
         <% if current_user.administrator?%>
           <td>
-              |  <%= link_to 'Editar', edit_deadline_path(time.id) %>
+              |  <%= link_to 'Editar', edit_deadline_path(time.id), class:"btn btn-link" %>
           <td>
         <% end %>
       </tr>

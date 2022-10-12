@@ -21,7 +21,7 @@
         <td>| <%= link_to price.transport_mode.name, price.transport_mode %></td>
         <% if current_user.administrator?%>
           <td>
-              |  <%= link_to 'Editar', edit_distance_price_path(price.id) %>
+              |  <%= link_to 'Editar', edit_distance_price_path(price.id), class:"btn btn-link" %>
           <td>
         <% end %>
       </tr>

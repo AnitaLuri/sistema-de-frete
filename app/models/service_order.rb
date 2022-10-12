@@ -6,8 +6,8 @@ class ServiceOrder < ApplicationRecord
   enum status: { pending: 0, progress: 5, concluded: 9}
 
   before_validation :generate_code
-
-  private
+  
+  
   def generate_code
     self.code = SecureRandom.alphanumeric(15).upcase
   end

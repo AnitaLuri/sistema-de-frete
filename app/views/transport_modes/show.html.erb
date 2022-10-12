@@ -28,10 +28,26 @@
       <%= I18n.translate(@transport_mode.status) %>
     </dd>
   </div>
+
+  <div>
+    <% if current_user.administrator?%>
+      <% if @transport_mode.active? %>
+        <div>
+          <%= button_to 'Desativar', inactive_transport_mode_path, class:"btn btn-secondary"%>
+        </div>
+      <% end %>
+      <% if @transport_mode.inactive? %>
+        <div>
+          <%= button_to 'Ativar', active_transport_mode_path, class:"btn btn-success"%>
+        </div>
+      <% end %>
+      <br />
+    <% end %>
+  </div>
 </dl>
 
 <div>
-  <%= link_to 'Editar', edit_transport_mode_path %>
+  <%= link_to 'Editar', edit_transport_mode_path, class:"btn btn-link" %>
 </div>
 
 <br />
@@ -39,7 +55,7 @@
 
 <div >
   <h3> <%= link_to 'Preços por Peso', weight_prices_path %></h3>
-  <%= link_to('Cadastrar Preço por Peso', new_weight_price_path) %>
+  <%= link_to 'Cadastrar Preço por Peso', new_weight_price_path, class:"btn btn-link" %>
   <% if @transport_mode.weight_prices.size > 0 %>
     <table>
       <thead>
@@ -64,7 +80,7 @@
 
 <div>
   <h3> <%= link_to 'Preços por Distância', distance_prices_path %></h3>
-  <%= link_to('Cadastrar Preço por Distância', new_distance_price_path) %>
+  <%= link_to 'Cadastrar Preço por Distância', new_distance_price_path, class:"btn btn-link" %>
   <% if @transport_mode.distance_prices.size > 0 %>
     <table>
       <thead>
@@ -89,7 +105,7 @@
 
 <div >
   <h3> <%= link_to 'Prazo de Entrega', deadlines_path %></h3>
-  <%= link_to('Cadastrar Prazo de Entrega', new_deadline_path) %>
+  <%= link_to 'Cadastrar Prazo de Entrega', new_deadline_path, class:"btn btn-link" %>
   <% if @transport_mode.deadlines.size > 0 %>
     <table>
       <thead>

@@ -1,0 +1,81 @@
+<h2>Iniciar Ordem de Serviço</h2>
+
+<div >
+  <table>
+    <thead>
+      <tr>
+        <th>Modalidade </th>
+        <th>Valor Fixo</th>
+        <th>Valor por Peso</th>
+        <th>Valor por Distância</th>
+        <th>Prazo</th>
+        <th>Valor Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @service_order.transport_mode.each do |mode| %>
+        <tr>
+          <td><%= mode %></td> 
+          <td><%= number_to_currency(price.km_value) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<br />
+<br />
+
+<div class="card">
+  <dl>
+    <dt>
+      <h3><%= ServiceOrder.model_name.human %>: <%= @service_order.code %></h3>
+    </dt>
+    <div>
+      <dd>
+        <strong><%= ServiceOrder.human_attribute_name(:from) %>: </strong>
+        <%= @service_order.from %>
+      </dd>
+      <dd>
+        <strong><%= ServiceOrder.human_attribute_name(:to) %>: </strong>
+        <%= @service_order.to %>
+      </dd>
+      <dd>
+        <strong><%= ServiceOrder.human_attribute_name(:distance) %>:  </strong>
+        <%= @service_order.distance %>Km
+      </dd>
+      <dd>
+        <strong><%= ServiceOrder.human_attribute_name(:recipient) %>:  </strong>
+        <%= @service_order.recipient %>
+      </dd>
+      <dd>
+        <strong><%= ServiceOrder.human_attribute_name(:product_code) %>:  </strong>
+        <%= @service_order.product_code %>
+      </dd>
+      <dd>
+        <strong>Dimensões:  </strong>
+        <%= @service_order.width %>cm x <%= @service_order.height %>cm x <%= @service_order.depth %>cm
+      </dd>
+      <dd>
+        <strong><%= ServiceOrder.human_attribute_name(:weight) %>:  </strong>
+        <%= @service_order.weight %>Kg
+      </dd>
+      <dd>
+        <strong><%= ServiceOrder.human_attribute_name(:status) %>:  </strong>
+        <%= I18n.translate(@service_order.status) %>
+      </dd>
+    </div>
+  </dl>
+  <%= form_with model: @service_order do |form| %>
+    <div>
+      <%= form.label :transport_mode_id %>
+      <%= form.collection_select :transport_mode_id, @transport_modes, :id, :name %>
+    </div><br />
+
+    <div>
+      <%= form.label :vehicle_id %>
+      <%= form.collection_select :vehicle_id, @vehicle, :id, :plate %>
+    </div><br />
+
+    <%= form.submit %>
+  <% end %>
+</div>

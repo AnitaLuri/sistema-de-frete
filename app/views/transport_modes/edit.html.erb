@@ -9,19 +9,6 @@
   </ul>
 <% end %>
 
-<% if @transport_mode.active? %>
-  <div>
-    <%= button_to 'Desativar', inactive_transport_mode_path(@transport_mode.id)%>
-  </div>
-<% end %>
-<br />
-
-<% if @transport_mode.inactive? %>
-  <div>
-    <%= button_to 'Ativar', active_transport_mode_path(@transport_mode.id)%>
-  </div>
-<% end %>
-<br />
 
 <%= render 'form' %>
 
