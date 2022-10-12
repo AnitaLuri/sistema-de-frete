@@ -2,12 +2,12 @@ class WeightPricesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @weight_prices = WeightPrice.all
+    @weight_prices = WeightPrice.all.order(:initial_weight, ending_weight: :asc)
   end
 
   def new 
     @weight_price = WeightPrice.new()
-    @transport_modes = TransportMode.all
+    @transport_modes = TransportMode.all.order(name: :asc)
     if current_user.profile != "administrator"
       flash[:alert] = "Você não possui permissão."
       return redirect_to root_path
@@ -19,7 +19,7 @@ class WeightPricesController < ApplicationController
       flash[:notice] = "Preço cadastrado com sucesso!"
       redirect_to weight_prices_path
     else
-      @transport_modes = TransportMode.all
+      @transport_modes = TransportMode.all.order(name: :asc)
       flash.now[:notice] = "Preço não cadastrado."
       render 'new'
     end
@@ -28,7 +28,7 @@ class WeightPricesController < ApplicationController
   def edit
     if current_user.administrator?
       @weight_price = WeightPrice.find(params[:id])
-      @transport_modes = TransportMode.all
+      @transport_modes = TransportMode.all.order(name: :asc)
     else
       flash[:alert] = "Você não possui permissão."
       return redirect_to root_path
@@ -40,7 +40,7 @@ class WeightPricesController < ApplicationController
       flash[:notice] = "Preço atualizado com sucesso!"
       redirect_to weight_prices_path
     else
-      @transport_modes = TransportMode.all
+      @transport_modes = TransportMode.all.order(name: :asc)
       flash.now[:notice] = "Não foi possível atualizar preço por peso."
       render 'new'
     end

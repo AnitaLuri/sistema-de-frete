@@ -2,12 +2,12 @@ class DistancePricesController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @distance_prices = DistancePrice.all
+    @distance_prices = DistancePrice.all.order(:initial_distance, ending_distance: :asc)
   end
   
   def new
     @distance_price = DistancePrice.new()
-    @transport_modes = TransportMode.all
+    @transport_modes = TransportMode.all.order(name: :asc)
     if current_user.profile != "administrator"
       flash[:alert] = "Você não possui permissão."
       return redirect_to root_path
@@ -19,7 +19,7 @@ class DistancePricesController < ApplicationController
       flash[:notice] = "Preço cadastrado com sucesso!"
       redirect_to distance_prices_path
     else
-      @transport_modes = TransportMode.all
+      @transport_modes = TransportMode.all.order(name: :asc)
       flash.now[:notice] = "Preço não cadastrado."
       render 'new'
     end
@@ -28,7 +28,7 @@ class DistancePricesController < ApplicationController
   def edit
     if current_user.administrator?
       @distance_price = DistancePrice.find(params[:id])
-      @transport_modes = TransportMode.all
+      @transport_modes = TransportMode.all.order(name: :asc)
     else
       flash[:alert] = "Você não possui permissão."
       return redirect_to root_path
@@ -40,7 +40,7 @@ class DistancePricesController < ApplicationController
       flash[:notice] = "Preço atualizado com sucesso!"
       redirect_to distance_prices_path
     else
-      @transport_modes = TransportMode.all
+      @transport_modes = TransportMode.all.order(name: :asc)
       flash.now[:notice] = "Não foi possível atualizar preço por distância."
       render 'new'
     end

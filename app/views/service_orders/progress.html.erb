@@ -18,7 +18,7 @@
         <% y = 0 %>
         <% z = 0 %>
         <tr>
-          <td><%= mode.name %></td>
+          <td><%= link_to mode.name, mode %></td>
           <td><%= number_to_currency(mode.fixed_value) %></td>
           <% mode.weight_prices.each do |weight_price|%>
             <% if weight_price.initial_weight <= @service_order.weight && weight_price.ending_weight >= @service_order.weight %>
@@ -87,13 +87,12 @@
     </div>
   </dl>
 
-  <%= form_with model: @service_order do |form| %>
+  <%= form_with(url: start_service_order_path, method: :post) do |form| %>
     <div>
-      <%= form.label :transport_mode_id %>
+      <strong><%= form.label :transport_mode_id %></strong>
       <%= form.collection_select :transport_mode_id, @transport_modes, :id, :name %>
     </div><br />
 
-    
     <%= form.submit %>
   <% end %>
 </div>

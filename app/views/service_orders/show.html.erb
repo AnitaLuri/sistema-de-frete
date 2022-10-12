@@ -37,19 +37,17 @@
     </dd>
   </div>
   <div>
-    <% if current_user.administrator?%>
-      <% if @service_order.pending? %>
-        <div>
-          <%= button_to 'Iniciar Ordem de Serviço', progress_service_order_path(@service_order.id), class:"btn btn-primary"%>
-        </div>
-      <% end %>
-      <% if @service_order.progress? %>
-        <div>
-          <%= button_to 'Encerrar Ordem de Serviço', concluded_service_order_path(@service_order.id), class:"btn btn-success"%>
-        </div>
-      <% end %>
-      <br />
+    <% if @service_order.pending? %>
+      <div>
+        <%= button_to 'Iniciar Ordem de Serviço', progress_service_order_path(@service_order.id), class:"btn btn-primary"%>
+      </div>
     <% end %>
+    <% if @service_order.progress? %>
+      <div>
+        <%= button_to 'Encerrar Ordem de Serviço', concluded_service_order_path(@service_order.id), class:"btn btn-success"%>
+      </div>
+    <% end %>
+    <br />
   </div>
 </dl>
 

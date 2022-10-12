@@ -2,12 +2,12 @@ class DeadlinesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @deadlines = Deadline.all
+    @deadlines = Deadline.all.order(start: :asc)
   end
 
   def new
     @deadline = Deadline.new()
-    @transport_modes = TransportMode.all
+    @transport_modes = TransportMode.all.order(name: :asc)
     if current_user.profile != "administrator"
       flash[:alert] = "Você não possui permissão."
       return redirect_to root_path
@@ -19,7 +19,7 @@ class DeadlinesController < ApplicationController
       flash[:notice] = "Prazo de Entrega cadastrado com sucesso!"
       redirect_to deadlines_path
     else
-      @transport_modes = TransportMode.all
+      @transport_modes = TransportMode.all.order(name: :asc)
       flash.now[:notice] = "Prazo de Entrega não cadastrado."
       render 'new'
     end
@@ -28,7 +28,7 @@ class DeadlinesController < ApplicationController
   def edit
     if current_user.administrator?
       @deadline = Deadline.find(params[:id])
-      @transport_modes = TransportMode.all
+      @transport_modes = TransportMode.all.order(name: :asc)
     else
       flash[:alert] = "Você não possui permissão."
       return redirect_to root_path
@@ -40,7 +40,7 @@ class DeadlinesController < ApplicationController
       flash[:notice] = "Prazo de Entrega atualizado com sucesso!"
       redirect_to deadlines_path
     else
-      @transport_modes = TransportMode.all
+      @transport_modes = TransportMode.all.order(name: :asc)
       flash.now[:notice] = "Não foi possível atualizar prazo de entrega."
       render 'new'
     end

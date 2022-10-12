@@ -20,3 +20,5 @@ pt-BR:
         depth: 'Profundidade'
         weight: 'Peso'
         status: 'Situação'
+        transport_mode_id: 'Modalidade de Transporte'
+        transport_mode: 'Modalidade de Transporte'

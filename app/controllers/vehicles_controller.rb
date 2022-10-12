@@ -2,7 +2,7 @@ class VehiclesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @vehicles = Vehicle.all
+    @vehicles = Vehicle.all.order(transport_mode_id: :asc)
   end
 
   def show
@@ -12,7 +12,7 @@ class VehiclesController < ApplicationController
   def new
     if current_user.administrator?
       @vehicle = Vehicle.new
-      @transport_modes = TransportMode.all
+      @transport_modes = TransportMode.all.order(name: :asc)
     else
       flash[:alert] = "Você não possui permissão."
       return redirect_to root_path
@@ -24,7 +24,7 @@ class VehiclesController < ApplicationController
       flash[:notice] = "Veículo cadastrado com sucesso!"
       redirect_to @vehicle
     else
-      @transport_modes = TransportMode.all
+      @transport_modes = TransportMode.all.order(name: :asc)
       flash.now[:notice] = "Veículo não cadastrado."
       render 'new'
     end
@@ -33,7 +33,7 @@ class VehiclesController < ApplicationController
   def edit
     if current_user.administrator?
       @vehicle = Vehicle.find(params[:id])
-      @transport_modes = TransportMode.all
+      @transport_modes = TransportMode.all.order(name: :asc)
     else
       flash[:alert] = "Você não possui permissão."
       return redirect_to root_path
@@ -45,7 +45,7 @@ class VehiclesController < ApplicationController
       flash[:notice] = "Veículo atualizado com sucesso!"
       redirect_to @vehicle
     else
-      @transport_modes = TransportMode.all
+      @transport_modes = TransportMode.all.order(name: :asc)
       flash.now[:notice] = "Não foi possível atualizar veículo."
       render 'new'
     end
