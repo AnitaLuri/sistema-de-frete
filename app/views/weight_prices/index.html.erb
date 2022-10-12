@@ -2,14 +2,14 @@
 <br />
 <%= link_to 'Cadastrar Preço por Peso', new_weight_price_path, class:"btn btn-link" %>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Intervalo   </th>
-      <th>|   Valor por Km</th>
-      <th>|   Modalidade de Transporte</th>
+      <th>Valor por Km</th>
+      <th>Modalidade de Transporte</th>
       <% if current_user.administrator?%>
-        <th>| Editar</th>
+        <th>Editar</th>
       <% end %>
     </tr>
   </thead>
@@ -17,12 +17,12 @@
     <% @weight_prices.each do |price| %>
       <tr>
         <td><%= price.initial_weight%>Kg   -   <%= price.ending_weight%>Kg</td> 
-        <td>| <%= number_to_currency(price.km_value) %></td>
-        <td>| <%= link_to price.transport_mode.name, price.transport_mode %></td>
+        <td><%= number_to_currency(price.km_value) %></td>
+        <td><%= link_to price.transport_mode.name, price.transport_mode %></td>
         <% if current_user.administrator?%>
           <td>
-              |  <%= link_to 'Editar', edit_weight_price_path(price.id) %>
-          <td>
+              <%= link_to 'Editar', edit_weight_price_path(price.id) %>
+          </td>
         <% end %>
       </tr>
     <% end %>

@@ -57,18 +57,18 @@
   <h3> <%= link_to 'Preços por Peso', weight_prices_path %></h3>
   <%= link_to 'Cadastrar Preço por Peso', new_weight_price_path, class:"btn btn-link" %>
   <% if @transport_mode.weight_prices.size > 0 %>
-    <table>
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th>Intervalo   </th>
-          <th>|   Valor por Km</th>
+          <th>Valor por Km</th>
         </tr>
       </thead>
       <tbody>
         <% @transport_mode.weight_prices.each do |price| %>
           <tr>
             <td><%= price.initial_weight%>Kg  -  <%= price.ending_weight%>Kg</td> 
-            <td>|   <%= number_to_currency(price.km_value) %></td>
+            <td><%= number_to_currency(price.km_value) %></td>
           </tr>
         <% end %>
       </tbody>
@@ -82,18 +82,18 @@
   <h3> <%= link_to 'Preços por Distância', distance_prices_path %></h3>
   <%= link_to 'Cadastrar Preço por Distância', new_distance_price_path, class:"btn btn-link" %>
   <% if @transport_mode.distance_prices.size > 0 %>
-    <table>
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th>Intervalo   </th>
-          <th>|   Taxa</th>
+          <th>Taxa</th>
         </tr>
       </thead>
       <tbody>
         <% @transport_mode.distance_prices.each do |price| %>
           <tr>
             <td><%= price.initial_distance%>Km  -  <%= price.ending_distance%>Km</td> 
-            <td>|   <%= number_to_currency(price.price) %></td>
+            <td><%= number_to_currency(price.price) %></td>
           </tr>
         <% end %>
       </tbody>
@@ -107,18 +107,18 @@
   <h3> <%= link_to 'Prazo de Entrega', deadlines_path %></h3>
   <%= link_to 'Cadastrar Prazo de Entrega', new_deadline_path, class:"btn btn-link" %>
   <% if @transport_mode.deadlines.size > 0 %>
-    <table>
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th>Distância   </th>
-          <th>|   Prazo</th>
+          <th>Prazo</th>
         </tr>
       </thead>
       <tbody>
         <% @transport_mode.deadlines.each do |time| %>
           <tr>
             <td><%= time.start%>Km  -  <%= time.limit%>Km</td> 
-            <td>|   <%= time.time %>h</td>
+            <td><%= time.time %>h</td>
           </tr>
         <% end %>
       </tbody>

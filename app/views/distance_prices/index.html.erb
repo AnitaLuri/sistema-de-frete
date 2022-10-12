@@ -2,12 +2,12 @@
 <br />
 <%= link_to 'Cadastrar Preço por Distância', new_distance_price_path, class:"btn btn-link" %>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Intervalo   </th>
-      <th>|   Taxa </th>
-      <th>|   Modalidade de Transporte</th>
+      <th>Taxa </th>
+      <th>Modalidade de Transporte</th>
       <% if current_user.administrator?%>
         <th>| Editar</th>
       <% end %>
@@ -17,12 +17,12 @@
     <% @distance_prices.each do |price| %>
       <tr>
         <td><%= price.initial_distance%>Km   -   <%= price.ending_distance%>Km</td> 
-        <td>| <%= number_to_currency(price.price) %></td>
-        <td>| <%= link_to price.transport_mode.name, price.transport_mode %></td>
+        <td><%= number_to_currency(price.price) %></td>
+        <td><%= link_to price.transport_mode.name, price.transport_mode %></td>
         <% if current_user.administrator?%>
           <td>
-              |  <%= link_to 'Editar', edit_distance_price_path(price.id), class:"btn btn-link" %>
-          <td>
+            <%= link_to 'Editar', edit_distance_price_path(price.id), class:"btn btn-link" %>
+          </td>
         <% end %>
       </tr>
     <% end %>

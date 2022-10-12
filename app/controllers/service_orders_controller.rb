@@ -51,6 +51,11 @@ class ServiceOrdersController < ApplicationController
 
   def progress
     @service_order = ServiceOrder.find(params[:id])
+    @transport_modes = TransportMode.where(['minimum_distance <= ? and maximum_distance >= ? and 
+                                          minimum_weight <= ? and maximum_weight >= ?',
+                                          @service_order.distance, @service_order.distance, 
+                                          @service_order.weight, @service_order.weight])  
+    
   end
 
   private

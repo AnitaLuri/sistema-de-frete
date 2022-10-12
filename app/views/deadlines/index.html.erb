@@ -2,14 +2,14 @@
 <%= link_to 'Cadastrar Prazo de Entrega', new_deadline_path, class:"btn btn-link" %>
 <br />
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>Distância   </th>
-      <th>|   Prazo </th>
-      <th>|   Modalidade de Transporte</th>
+      <th>Distância </th>
+      <th>Prazo </th>
+      <th>Modalidade de Transporte</th>
       <% if current_user.administrator?%>
-        <th>| Editar</th>
+        <th>Editar</th>
       <% end %>
     </tr>
   </thead>
@@ -17,12 +17,12 @@
     <% @deadlines.each do |time| %>
       <tr>
         <td><%= time.start%>Km   -   <%= time.limit%>Km</td> 
-        <td>| <%= time.time %>h</td>
-        <td>| <%= link_to time.transport_mode.name, time.transport_mode %></td>
+        <td><%= time.time %>h</td>
+        <td><%= link_to time.transport_mode.name, time.transport_mode %></td>
         <% if current_user.administrator?%>
           <td>
-              |  <%= link_to 'Editar', edit_deadline_path(time.id), class:"btn btn-link" %>
-          <td>
+              <%= link_to 'Editar', edit_deadline_path(time.id), class:"btn btn-link" %>
+          </td>
         <% end %>
       </tr>
     <% end %>
