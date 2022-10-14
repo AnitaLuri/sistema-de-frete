@@ -1,4 +1,4 @@
-<h2>Iniciar Ordem de Serviço</h2>
+<h2>Iniciar Ordem de Serviço: <%= @service_order.code %></h2>
 
 <div>
   <table class="table table-bordered">
@@ -87,12 +87,12 @@
     </div>
   </dl>
 
-  <%= form_with(url: start_service_order_path, method: :post) do |form| %>
+  <%= form_with(model: [@service_order, @started_order])  do |form| %>
     <div>
       <strong><%= form.label :transport_mode_id, 'Modalidade de Transporte' %></strong>
       <%= form.collection_select :transport_mode_id, @transport_modes, :id, :name %>
     </div><br />
 
-    <%= form.submit %>
+    <%= form.submit 'Confirmar' %>
   <% end %>
 </div>

@@ -1,0 +1,23 @@
+pt-BR:
+  progress: 'Em progresso'
+  concluded: 'Concluído'
+  activerecord:
+    models:
+      started_order: 
+        one: 'Ordem de Serviço Iniciada'
+        other: 'Ordens de Serviço Iniciadas'
+    attributes:
+      started_order:
+        code: 'Código'
+        from: 'Origem'
+        to: 'Destino'
+        recipient: 'Destinatário'
+        distance: 'Distância'
+        product_code: 'Código do Produto'
+        width: 'Largura'
+        height: 'Altura'
+        depth: 'Profundidade'
+        weight: 'Peso'
+        status: 'Situação'
+        transport_mode_id: 'Modalidade de Transporte'
+        transport_mode: 'Modalidade de Transporte'

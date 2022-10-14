@@ -5,12 +5,12 @@ describe 'Usuário registra prazo de entrega' do
     user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 0)
     transport_mode = TransportMode.create!(name: 'Caminhão', minimum_distance: 400, maximum_distance: 5000, 
                                   minimum_weight: 1000, maximum_weight: 2000, fixed_value: '500,00') 
-    #Act
+
     login_as(user)
     visit root_path
     click_on 'Prazos'
     click_on 'Cadastrar Prazo de Entrega'
-    #Assert
+
     expect(current_path).to eq root_path
     expect(page).to have_content 'Você não possui permissão.'
   end
@@ -20,7 +20,7 @@ describe 'Usuário registra prazo de entrega' do
                                           minimum_weight: 1000, maximum_weight: 15000, fixed_value: '500,00') 
     second_mode = TransportMode.create!(name: 'Van', minimum_distance: 400, maximum_distance: 1200, 
                                           minimum_weight: 150, maximum_weight: 1200, fixed_value: '20,00') 
-    #Act
+
     login_as(user)
     visit root_path
     click_on 'Caminhão'
@@ -30,7 +30,7 @@ describe 'Usuário registra prazo de entrega' do
     fill_in 'Prazo', with: '72'
     select 'Caminhão', from: 'Modalidade de Transporte'
     click_on 'Criar Prazo de Entrega'
-    #Assert
+
     expect(page).to have_content 'Prazo de Entrega cadastrado com sucesso'
     expect(page).to have_content '100Km - 400Km'
     expect(page).to have_content '72h'
@@ -41,7 +41,7 @@ describe 'Usuário registra prazo de entrega' do
                                           minimum_weight: 1000, maximum_weight: 15000, fixed_value: '500,00') 
     second_mode = TransportMode.create!(name: 'Van', minimum_distance: 400, maximum_distance: 1200, 
                                           minimum_weight: 150, maximum_weight: 1200, fixed_value: '20,00') 
-    #Act
+
     login_as(user)
     visit root_path
     click_on 'Prazos'
@@ -51,7 +51,7 @@ describe 'Usuário registra prazo de entrega' do
     fill_in 'Prazo', with: ''
     select 'Caminhão', from: 'Modalidade de Transporte'
     click_on 'Criar Prazo de Entrega'
-    #Assert
+
     expect(page).to have_content 'Distância inicial não pode ficar em branco'
     expect(page).to have_content 'Distância limite não pode ficar em branco'
     expect(page).to have_content 'Prazo não pode ficar em branco'

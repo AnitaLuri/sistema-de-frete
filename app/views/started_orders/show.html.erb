@@ -1,0 +1,45 @@
+<dl class="card">
+  <dt>
+    <h2>Detalhes da <%= ServiceOrder.model_name.human %>: <%= @started_order.service_order.code %></h2>
+  </dt>
+  <div>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:from) %>: </strong>
+      <%= @started_order.service_order.from %>
+    </dd>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:to) %>: </strong>
+      <%= @started_order.service_order.to %>
+    </dd>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:distance) %>:  </strong>
+      <%= @started_order.service_order.distance %>Km
+    </dd>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:recipient) %>:  </strong>
+      <%= @started_order.service_order.recipient %>
+    </dd>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:product_code) %>:  </strong>
+      <%= @started_order.service_order.product_code %>
+    </dd>
+    <dd>
+      <strong>Dimensões:  </strong>
+      <%= @started_order.service_order.width %>cm x <%= @started_order.service_order.height %>cm x <%= @started_order.service_order.depth %>cm
+    </dd>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:weight) %>:  </strong>
+      <%= @started_order.service_order.weight %>Kg
+    </dd>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:status) %>:  </strong>
+      <%= I18n.translate(@started_order.service_order.status) %>
+    </dd>
+  </div>gi
+  <div>
+    <%# <div>
+      <%= button_to 'Encerrar Ordem de Serviço', concluded_started_order_service_order_path(@started_order.service_order.id), class:"btn btn-success"%>
+    <%# </div> %> %>
+    <br />
+  </div>
+</dl>

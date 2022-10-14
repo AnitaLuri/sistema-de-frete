@@ -49,21 +49,17 @@ class ServiceOrdersController < ApplicationController
     end
   end
 
-  def progress
-    @service_order = ServiceOrder.find(params[:id])
-    @transport_modes = TransportMode.where(['minimum_distance <= ? and maximum_distance >= ? and 
-                                          minimum_weight <= ? and maximum_weight >= ?',
-                                          @service_order.distance, @service_order.distance, 
-                                          @service_order.weight, @service_order.weight])  
-  end
-  def start
-    @service_order = ServiceOrder.find(params[:id])
-    @service_order.progress!
-    @service_order.update(service_order_params)
-
-    flash[:notice] = "Ordem de Serviço iniciada com sucesso!"
-    redirect_to start_service_order_path 
-  end
+  # def progress
+  #   @service_order = ServiceOrder.find(params[:id])
+  #   @transport_modes = TransportMode.active.available(@service_order.distance, @service_order.weight) 
+  # end
+  
+  # def start
+  #   @service_order = ServiceOrder.find(params[:id])
+  #   @service_order.progress!
+  #   @service_order.update!
+  #   # StartedOrder.create!(order: @service_order, 
+  # end
 
   private
   def service_order_params

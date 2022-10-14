@@ -10,4 +10,10 @@ class TransportMode < ApplicationRecord
   validates :name, uniqueness: true
 
   enum status: { active: 0, inactive: 5 }
+
+  scope :available , -> (distance, weight) { where(['minimum_distance <= ? and maximum_distance >= ? and 
+                                  minimum_weight <= ? and maximum_weight >= ?',
+                                  distance, distance, 
+                                  weight, weight])   }
+
 end

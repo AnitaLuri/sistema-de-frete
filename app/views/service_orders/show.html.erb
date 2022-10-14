@@ -1,6 +1,6 @@
 <dl class="card">
   <dt>
-    <h2>Detalhes <%= ServiceOrder.model_name.human %>: <%= @service_order.code %></h2>
+    <h2>Detalhes da <%= ServiceOrder.model_name.human %>: <%= @service_order.code %></h2>
   </dt>
   <div>
     <dd>
@@ -35,11 +35,18 @@
       <strong><%= ServiceOrder.human_attribute_name(:status) %>:  </strong>
       <%= I18n.translate(@service_order.status) %>
     </dd>
+
+    <% if @service_order.progress? %>
+      <dd>
+        <strong><%= ServiceOrder.human_attribute_name(:transport_mode_id) %>:  </strong>
+        <%= @service_order.started_order.transport_mode.name %>
+      </dd>
+    <% end %>
   </div>
   <div>
     <% if @service_order.pending? %>
       <div>
-        <%= button_to 'Iniciar Ordem de Serviço', progress_service_order_path(@service_order.id), class:"btn btn-primary"%>
+        <%= link_to 'Iniciar Ordem de Serviço', new_service_order_started_order_path(service_order_id: @service_order.id), class:"btn btn-success" %>
       </div>
     <% end %>
     <% if @service_order.progress? %>
