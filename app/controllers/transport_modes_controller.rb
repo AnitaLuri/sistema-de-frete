@@ -59,7 +59,6 @@ class TransportModesController < ApplicationController
   end
 
   private
-
   def set_transport_mode
     @transport_mode = TransportMode.find(params[:id])
   end

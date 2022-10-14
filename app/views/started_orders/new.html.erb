@@ -14,31 +14,14 @@
     </thead>
     <tbody>
       <% @transport_modes.each do |mode| %>
-        <% x = 0 %>
-        <% y = 0 %>
-        <% z = 0 %>
-          <tr>
-            <td><%= link_to mode.name, mode %></td>
-            <td><%= number_to_currency(mode.fixed_value) %></td>
-            <% mode.weight_prices.each do |weight_price|%>
-              <% if weight_price.initial_weight <= @service_order.weight && weight_price.ending_weight >= @service_order.weight %>
-                <% x = (weight_price.km_value * @service_order.distance)%>
-                <td><%= number_to_currency(x) %></td>
-              <% end %>
-            <% end %>
-            <% mode.distance_prices.each do |distance_price|%>
-              <% if distance_price.initial_distance <= @service_order.distance && distance_price.ending_distance >= @service_order.distance %>
-                <% y = distance_price.price %>
-                <td><%= number_to_currency(y) %></td>
-              <% end %>
-            <% end %>
-            <% mode.deadlines.each do |deadline|%>
-              <% if deadline.start <= @service_order.distance && deadline.limit >= @service_order.distance %>
-                <td><%= deadline.time %>h </td>
-              <% end %>
-            <% end %>
-            <td><%= number_to_currency(mode.fixed_value + x + y )%></td>
-          </tr>
+        <tr>
+          <td><%= link_to mode.name, mode %></td>
+          <td><%= number_to_currency(mode.fixed_value) %></td>
+          <td><%= number_to_currency(mode.calculate_weight_value(@service_order.weight, @service_order.distance)) %></td>
+          <td><%= number_to_currency(mode.calculate_distance_value(@service_order.distance)) %></td>
+          <td><%= mode.calculate_deadline(@service_order.distance) %>h</td>
+          <td><%= number_to_currency(mode.value_total(@service_order.weight, @service_order.distance))%></td>
+        </tr>
       <% end %>
     </tbody>
   </table>
@@ -89,7 +72,7 @@
 
   <%= form_with(model: [@service_order, @started_order])  do |form| %>
     <div>
-      <strong><%= form.label :transport_mode_id, 'Modalidade de Transporte' %></strong>
+      <strong><%= form.label :transport_mode_id %></strong>
       <%= form.collection_select :transport_mode_id, @transport_modes, :id, :name %>
     </div><br />
 

@@ -17,8 +17,18 @@ class StartedOrdersController < ApplicationController
   def create
     @service_order = ServiceOrder.find(params[:service_order_id])
     @service_order.progress!
+    @vehicle = Vehicle.active.where('transport_mode_id', :transport_mode_id)
+    @vehicle.first.operation!
+    @started_order.vehicle = @vehicle.first
+    
     @started_order = StartedOrder.new(started_order_params)
     @started_order.service_order = @service_order
+
+    #incluir o veiculo 
+    #mudar o status do veiculo
+    #incluir o prazo de entrega
+    #incluir o valor total
+
     @started_order.save
 
     redirect_to @service_order

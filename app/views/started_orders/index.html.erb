@@ -3,7 +3,7 @@
 <% @started_orders.each do |started_order|%>
   <dl class="card">
     <dt><strong><%= ServiceOrder.human_attribute_name(:code) %>: </strong>
-    <%= link_to started_order.service_order.code, started_order.service_order.code %></dt>
+    <%= link_to started_order.service_order.code, service_order_path(service_order: service_order.id) %></dt>
 
     <dd><strong><%= ServiceOrder.human_attribute_name(:recipient) %>: </strong>
     <%= started_order.service_order.recipient %></dd>
