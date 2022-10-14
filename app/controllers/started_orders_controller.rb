@@ -15,15 +15,18 @@ class StartedOrdersController < ApplicationController
     @transport_modes = TransportMode.active.available(@service_order.distance, @service_order.weight) 
   end
   def create
+    @started_order = StartedOrder.new(started_order_params)
     @service_order = ServiceOrder.find(params[:service_order_id])
     @service_order.progress!
-    @vehicle = Vehicle.active.where('transport_mode_id', :transport_mode_id)
-    @vehicle.first.operation!
-    @started_order.vehicle = @vehicle.first
-    
-    @started_order = StartedOrder.new(started_order_params)
     @started_order.service_order = @service_order
+    @vehicles = Vehicle.active.where(["transport_mode_id = ?", @started_order.transport_mode_id, ])
+    
 
+    @vehicle = @vehicles.last
+    @vehicle.operation!
+    @started_order.vehicle_id = @vehicle
+    
+   
     #incluir o veiculo 
     #mudar o status do veiculo
     #incluir o prazo de entrega
@@ -38,6 +41,6 @@ class StartedOrdersController < ApplicationController
   private
   def started_order_params
     started_order_params = params.require(:started_order).permit(:service_order_id, :transport_mode_id, 
-                                                                  :total_value, :status)
+                                                                :vehicle_id, :total_value, :status)
   end
 end

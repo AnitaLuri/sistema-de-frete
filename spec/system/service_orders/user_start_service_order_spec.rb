@@ -58,6 +58,8 @@ describe 'Usuário inicia uma ordem de serviço'  do
                                 weight_limit: 40, transport_mode: transport_mode, status: 0)
     second_vehicle = Vehicle.create!(plate: 'FGH4321', brand: 'Honda', model: 'PCX', year: 2021, 
                                 weight_limit: 40, transport_mode: transport_mode, status: 0)
+    third_vehicle = Vehicle.create!(plate: 'FGH4322', brand: 'Honda', model: 'PCX', year: 2021, 
+                                weight_limit: 40, transport_mode: transport_mode, status: 3)
     WeightPrice.create!(initial_weight: 0, ending_weight: 20, km_value: '0.80', transport_mode: second_transport_mode)
     WeightPrice.create!(initial_weight: 0, ending_weight: 20, km_value: '1.00', transport_mode: transport_mode)
     WeightPrice.create!(initial_weight: 21, ending_weight: 50, km_value: '1.50', transport_mode: transport_mode)
@@ -90,7 +92,7 @@ describe 'Usuário inicia uma ordem de serviço'  do
     expect(page).to have_content 'Peso: 2Kg'
     expect(page).to have_content 'Situação: Em progresso'
     expect(page).to have_content 'Modalidade de Transporte: Motocicleta'
-    expect(page).to have_link 'Veículo placa: ABC1111'
+    expect(page).to have_content 'Veículo placa: ABC1111'
     expect(page).to have_content 'Valor Total: R$ 40,50'
   end
 end

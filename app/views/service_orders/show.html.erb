@@ -39,7 +39,11 @@
     <% if @service_order.progress? %>
       <dd>
         <strong><%= ServiceOrder.human_attribute_name(:transport_mode_id) %>:  </strong>
-        <%= @started_order.transport_mode %>
+        <%= @service_order.started_order.transport_mode.name %>
+      </dd>
+      <dd>
+        <strong><%= ServiceOrder.human_attribute_name(:vehicle_id) %> placa:  </strong>
+        <%= @service_order.started_order.vehicle_id %>
       </dd>
     <% end %>
   </div>
