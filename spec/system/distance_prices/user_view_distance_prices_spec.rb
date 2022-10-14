@@ -7,11 +7,11 @@ describe 'Usuário vê os preços por distância de cada modalidade de transport
                                   minimum_weight: 1000, maximum_weight: 2000, fixed_value: '500,00') 
     DistancePrice.create!(initial_distance: 400, ending_distance: 1000, price: '5.00', 
                           transport_mode: transport_mode)
-    #Act
+
     login_as(user)
     visit root_path
     click_on 'Caminhão'
-    #Assert
+
     expect(page).to have_content 'Preços por Distância'
     expect(page).to have_content 'Intervalo'
     expect(page).to have_content 'Taxa'

@@ -3,19 +3,19 @@ require 'rails_helper'
 describe 'Usuário registra ordem de serviço' do
   it 'e é administrador' do
     user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 0)
-    #Act
+
     login_as(user)
     visit root_path
     click_on 'Ordens'
     click_on 'Cadastrar Nova Ordem'
-    #Assert
+ 
     expect(current_path).to eq root_path
     expect(page).to have_content 'Você não possui permissão.'
   end
   it 'com sucesso' do
     user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 5)
     allow(SecureRandom).to receive(:alphanumeric).and_return('ABCDEF123456789')  
-    #Act
+
     login_as(user)
     visit root_path
     click_on 'Ordens'
@@ -30,7 +30,7 @@ describe 'Usuário registra ordem de serviço' do
     fill_in 'Profundidade', with: '20'
     fill_in 'Peso', with: '2'
     click_on 'Criar Ordem de Serviço'
-    #Assert
+
     expect(page).to have_content 'Ordem de Serviço registrada com sucesso'
     expect(page).to have_content 'ABCDEF123456789'
     expect(page).to have_content 'Origem: Av. Paulista, 500'
@@ -44,7 +44,7 @@ describe 'Usuário registra ordem de serviço' do
   end
   it 'faltando informações' do
     user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 5)  
-    #Act
+
     login_as(user)
     visit root_path
     click_on 'Ordens'
@@ -59,7 +59,7 @@ describe 'Usuário registra ordem de serviço' do
     fill_in 'Profundidade', with: ''
     fill_in 'Peso', with: ''
     click_on 'Criar Ordem de Serviço'
-    #Assert
+
     expect(page).to have_content 'Ordem de Serviço não registrada'
     expect(page).to have_content 'Origem não pode ficar em branco'
     expect(page).to have_content 'Destino não pode ficar em branco'

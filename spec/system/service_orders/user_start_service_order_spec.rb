@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe 'Usuário inicia uma ordem de serviço'  do
   it 'e visualiza as modalidades' do
-    #Arrange
     user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 0)
     first_transport_mode = TransportMode.create!(name: 'Caminhão', minimum_distance: 400, maximum_distance: 5000, 
                                   minimum_weight: 1000, maximum_weight: 2000, fixed_value: '500,00')
@@ -23,14 +22,14 @@ describe 'Usuário inicia uma ordem de serviço'  do
     Deadline.create!(start: 40, limit: 100, time: 48, transport_mode: first_transport_mode)
     order = ServiceOrder.create!(from: 'Av. Paulista, 500', to: 'Rua Jureia, 849', distance: 5, recipient: 'Maria Silva',
                                   product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2)
-    #Act
+ 
     login_as(user)
     visit root_path
     click_on 'Pedidos'
     click_on 'Pendentes'
     click_on order.code
     click_on 'Iniciar Ordem de Serviço'
-    #Assert
+ 
     expect(page).to have_content 'Modalidade de Transporte'
     expect(page).to have_link 'Motocicleta'
     expect(page).to have_content 'Valor Fixo'
@@ -48,7 +47,6 @@ describe 'Usuário inicia uma ordem de serviço'  do
     expect(page).not_to have_content 'R$ 23,50'
   end
   it 'com sucesso' do
-    #Arrange
     user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 0)
     first_transport_mode = TransportMode.create!(name: 'Caminhão', minimum_distance: 400, maximum_distance: 5000, 
                                 minimum_weight: 1000, maximum_weight: 2000, fixed_value: '500,00')
@@ -73,7 +71,7 @@ describe 'Usuário inicia uma ordem de serviço'  do
     Deadline.create!(start: 40, limit: 100, time: 48, transport_mode: first_transport_mode)
     order = ServiceOrder.create!(from: 'Av. Paulista, 500', to: 'Rua Jureia, 849', distance: 5, recipient: 'Maria Lucia',
                                 product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2)
-    #Act
+ 
     login_as(user)
     visit root_path
     click_on 'Pedidos'
@@ -82,7 +80,7 @@ describe 'Usuário inicia uma ordem de serviço'  do
     click_on 'Iniciar Ordem de Serviço'
     select 'Motocicleta', from: 'Modalidade de Transporte'
     click_on 'Confirmar'
-    #Assert
+
     expect(page).to have_content 'Origem: Av. Paulista, 500'
     expect(page).to have_content 'Destino: Rua Jureia, 849'
     expect(page).to have_content 'Distância: 5Km'

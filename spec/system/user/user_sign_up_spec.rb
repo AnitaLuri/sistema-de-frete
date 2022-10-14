@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe 'Usuário se cadastra' do
   it 'com sucesso' do
-    #Arrange
-    #Act
     visit root_path
     click_on 'Entrar'
     click_on 'Criar conta'
@@ -12,7 +10,7 @@ describe 'Usuário se cadastra' do
     fill_in 'Senha', with: 'password'
     fill_in 'Confirme sua senha', with: 'password'
     click_on 'Criar Usuário'
-    #Assert
+
     expect(page).not_to have_content 'Entrar'
     expect(page).to have_button 'Sair'
     within ('nav') do
@@ -21,8 +19,6 @@ describe 'Usuário se cadastra' do
     expect(page).to have_content 'Você realizou seu registro com sucesso.'
   end
   it 'com informações faltando' do
-    #Arrange
-    #Act
     visit root_path
     click_on 'Entrar'
     click_on 'Criar conta'
@@ -31,14 +27,12 @@ describe 'Usuário se cadastra' do
     fill_in 'Senha', with: ''
     fill_in 'Confirme sua senha', with: ''
     click_on 'Criar Usuário'
-    #Assert
+
     expect(page).to have_content 'Nome não pode ficar em branco'
     expect(page).to have_content 'E-mail não pode ficar em branco'
     expect(page).to have_content 'Senha não pode ficar em branco'
   end
   it 'com email invalido' do
-    #Arrange
-    #Act
     visit root_path
     click_on 'Entrar'
     click_on 'Criar conta'
@@ -47,13 +41,12 @@ describe 'Usuário se cadastra' do
     fill_in 'Senha', with: 'password'
     fill_in 'Confirme sua senha', with: 'password'
     click_on 'Criar Usuário'
-    #Assert
+
     expect(page).to have_content 'E-mail não é válido'
   end
   it 'com email único' do
-    #Arrange
     User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password')
-    #Act
+
     visit root_path
     click_on 'Entrar'
     click_on 'Criar conta'
@@ -62,7 +55,7 @@ describe 'Usuário se cadastra' do
     fill_in 'Senha', with: 'password'
     fill_in 'Confirme sua senha', with: 'password'
     click_on 'Criar Usuário'
-    #Assert
+ 
     expect(page).to have_content 'E-mail já está em uso'
   end
 end

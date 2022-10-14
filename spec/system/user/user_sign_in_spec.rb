@@ -2,9 +2,8 @@ require 'rails_helper'
 
 describe 'Usuário se autentica' do
   it 'com sucesso' do
-    #Arrange
     User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password')
-    #Act
+
     visit root_path
     click_on 'Entrar'
     within('form') do
@@ -12,7 +11,7 @@ describe 'Usuário se autentica' do
       fill_in 'Senha', with: 'password'
       click_on 'Entrar'
     end    
-    #Assert
+
     expect(page).not_to have_content 'Entrar'
     expect(page).to have_button 'Sair'
     within ('nav') do
@@ -21,9 +20,8 @@ describe 'Usuário se autentica' do
     expect(page).to have_content 'Login efetuado com sucesso.'
   end
   it 'e faz logout' do 
-     #Arrange
      User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password')
-     #Act
+
      visit root_path
      click_on 'Entrar'
      within('form') do
@@ -32,7 +30,7 @@ describe 'Usuário se autentica' do
        click_on 'Entrar'
      end 
      click_on 'Sair'   
-     #Assert
+
      expect(page).to have_link 'Entrar'
      expect(page).to have_content 'Logout efetuado com sucesso.'
      expect(page).not_to have_content 'teste@sistemadefrete.com.br'

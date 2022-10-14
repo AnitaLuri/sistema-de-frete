@@ -9,11 +9,11 @@ describe 'Usuário busca por um veículo' do
                                           weight_limit: 50000, transport_mode: transport_mode, status: 0)
     Vehicle.create!(plate: 'FGH5968', brand: 'Scania', model: 'P310', year: 2015, 
                                           weight_limit: 40000, transport_mode: transport_mode, status: 0)
-    #Act
+  
     login_as(user)
     visit root_path
     click_on 'Veículos'
-    #Assert
+  
     expect(page).to have_field 'Buscar Veículo'
     expect(page).to have_button 'Buscar'
   end
@@ -29,13 +29,13 @@ describe 'Usuário busca por um veículo' do
                                           weight_limit: 30000, transport_mode: transport_mode, status: 0)
     Vehicle.create!(plate: 'FG5H970', brand: 'Fiat', model: 'W200', year: 2018, 
                                           weight_limit: 20000, transport_mode: transport_mode, status: 0)
-    #Act
+ 
     login_as(user)
     visit root_path
     click_on 'Veículos'
     fill_in 'Buscar Veículo', with: 'ABC'
     click_on 'Buscar'
-    #Assert
+  
     expect(page).to have_content 'Resultado da busca: ABC'
     expect(page).to have_content '2 veículos encontrados'
     expect(page).to have_content 'Placa: ABC4252'

@@ -2,24 +2,22 @@ require 'rails_helper'
 
 describe 'Usuário registra um veiculo' do
   it 'e precisa ser administrador' do 
-    #Arrange
     user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 0)
     transport_mode = TransportMode.create!(name: 'Caminhão', minimum_distance: 100, maximum_distance: 5000, minimum_weight: 50000, maximum_weight: 5000000, fixed_value: '500,00') 
-    #Act
+   
     login_as(user)
     visit root_path
     click_on 'Veículos'
     click_on 'Cadastrar Novo Veículo'
-    #Assert
+    
     expect(current_path).to eq root_path 
     expect(page).to have_content 'Você não possui permissão.'
   end
   it 'com sucesso' do 
-    #Arrange
     user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 5)
     transport_mode = TransportMode.create!(name: 'Caminhão', minimum_distance: 100, maximum_distance: 5000, minimum_weight: 50000, 
                                           maximum_weight: 5000000, fixed_value: '500,00') 
-    #Act
+   
     login_as(user)
     visit root_path
     click_on 'Veículos'
@@ -32,7 +30,7 @@ describe 'Usuário registra um veiculo' do
     select 'Caminhão', from: 'Modalidade de Transporte'
     select 'Em manutenção', from: 'Situação'
     click_on 'Criar Veículo'
-    #Assert
+   
     expect(page).to have_content 'Veículo cadastrado com sucesso!'
     expect(page).to have_content 'Placa: ABC4252'
     expect(page).to have_content 'Marca: Ford'

@@ -7,13 +7,13 @@ describe 'Usuário registra ordem de serviço' do
                                           minimum_weight: 1, maximum_weight: 20, fixed_value: '30,00')
     order = ServiceOrder.create!(from: 'Av. Paulista, 500', to: 'Rua Jureia, 849', distance: 5, recipient: 'Maria Lucia',
                                           product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2)
-    #Act
+
     login_as(user)
     visit root_path
     click_on 'Ordens'
     click_on order.code
     click_on 'Editar'
-    #Assert
+
     expect(current_path).to eq root_path
     expect(page).to have_content 'Você não possui permissão.'
   end
@@ -23,7 +23,7 @@ describe 'Usuário registra ordem de serviço' do
                                           minimum_weight: 1, maximum_weight: 20, fixed_value: '30,00')
     order = ServiceOrder.create!(from: 'Av. Paulista, 500', to: 'Rua Jureia, 849', distance: 5, recipient: 'Maria Lucia',
                                           product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2)
-    #Act
+
     login_as(user)
     visit root_path
     click_on 'Ordens'
@@ -36,7 +36,7 @@ describe 'Usuário registra ordem de serviço' do
     fill_in 'Profundidade', with: '10'
     fill_in 'Peso', with: '3'
     click_on 'Atualizar Ordem de Serviço'
-    #Assert
+
     expect(page).to have_content 'Ordem de Serviço atualizado com sucesso!'
     expect(page).to have_content 'Destinatário: Lucia'
     expect(page).to have_content 'Situação: Pendente'
