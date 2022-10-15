@@ -1,6 +1,6 @@
 pt-BR:
   pending: 'Pendente'
-  progress: 'Em progresso'
+  progress: 'Iniciado'
   concluded: 'Concluído'
   activerecord:
     models:
@@ -22,3 +22,7 @@ pt-BR:
         status: 'Situação'
         transport_mode_id: 'Modalidade de Transporte'
         transport_mode: 'Modalidade de Transporte'
+        vehicle: 'Veículo'
+        vehicle_id: 'Veículo'
+        total_value: 'Valor Total'
+        delivery_time: 'Prazo de entrega'

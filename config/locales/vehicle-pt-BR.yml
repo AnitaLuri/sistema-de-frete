@@ -1,5 +1,5 @@
 pt-BR:
-  available: 'Disponível' 
+  active: 'Ativo' 
   operation: 'Em operação' 
   repair: 'Em manutenção' 
   off: 'Baixado'

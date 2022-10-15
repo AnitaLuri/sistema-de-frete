@@ -35,7 +35,23 @@
       <strong><%= ServiceOrder.human_attribute_name(:status) %>:  </strong>
       <%= I18n.translate(@started_order.service_order.status) %>
     </dd>
-  </div>gi
+  <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:transport_mode_id) %>:  </strong>
+      <%= @started_order.transport_mode.name %>
+    </dd>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:vehicle_id) %> placa:  </strong>
+      <%= link_to @started_order.vehicle.plate, @started_order.vehicle %>
+    </dd>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:total_value) %> :  </strong>
+      <%= @started_order.total_value %>
+    </dd>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:status) %> :  </strong>
+      <%= @started_order.status %>
+    </dd>
+  </div>
   <div>
     <%# <div>
       <%= button_to 'Encerrar Ordem de Serviço', concluded_started_order_service_order_path(@started_order.service_order.id), class:"btn btn-success"%>

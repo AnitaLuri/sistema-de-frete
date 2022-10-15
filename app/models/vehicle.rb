@@ -1,5 +1,6 @@
 class Vehicle < ApplicationRecord
   belongs_to :transport_mode
+  has_many :started_orders
 
   validates :plate, :brand, :model, :year, :weight_limit, :status, presence: true
   validates :plate, uniqueness: true

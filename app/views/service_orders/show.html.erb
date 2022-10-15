@@ -43,7 +43,19 @@
       </dd>
       <dd>
         <strong><%= ServiceOrder.human_attribute_name(:vehicle_id) %> placa:  </strong>
-        <%= @service_order.started_order.vehicle_id %>
+        <%= link_to @service_order.started_order.vehicle.plate, @service_order.started_order.vehicle %>
+      </dd>
+      <dd>
+        <strong><%= ServiceOrder.human_attribute_name(:delivery_time) %>:  </strong>
+        <%= @service_order.started_order.delivery_time %>h
+      </dd>
+      <dd>
+        <strong><%= ServiceOrder.human_attribute_name(:total_value) %>:  </strong>
+        <%= number_to_currency(@service_order.started_order.total_value) %>
+      </dd>
+      <dd>
+        <strong><%= ServiceOrder.human_attribute_name(:status) %>:  </strong>
+        <%= @service_order.started_order.status %>
       </dd>
     <% end %>
   </div>

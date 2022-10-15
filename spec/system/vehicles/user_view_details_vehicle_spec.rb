@@ -20,7 +20,7 @@ describe 'Usuário vê detalhes do cadastro do veículo' do
     expect(page).to have_content 'Modelo: F350'
     expect(page).to have_content 'Ano de fabricação: 2014'
     expect(page).to have_content 'Modalidade de Transporte: Caminhão' 
-    expect(page).to have_content 'Situação: Disponível'
+    expect(page).to have_content 'Situação: Ativo'
   end
   it 'e acessa detalhes da modalidade de transporte' do
     user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 5)

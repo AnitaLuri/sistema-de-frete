@@ -46,8 +46,8 @@ describe 'Usuário ve detalhes uma ordem de serviço'  do
     Deadline.create!(start: 40, limit: 100, time: 48, transport_mode: first_transport_mode)
     order = ServiceOrder.create!(from: 'Av. Paulista, 500', to: 'Rua Jureia, 849', distance: 5, recipient: 'Maria Lucia',
                                 product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2)
-    StartedOrder.create!(service_order: order, transport_mode: transport_mode,
-                                 total_value: '40.50', status: 0)
+    StartedOrder.create!(service_order: order, transport_mode: transport_mode, vehicle:second_vehicle,
+                                delivery_time: '12', total_value: '40.50', status: 0)
 
     login_as(user)
     visit root_path

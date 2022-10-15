@@ -1,5 +1,7 @@
 class ServiceOrder < ApplicationRecord
   has_one :started_order
+  has_many :transport_modes
+  
   validates :code, :from, :to, :distance, :recipient, :product_code, :width, :height, :depth, 
             :weight, :status, presence: true
   validates :weight, :width, :height, :depth, numericality: { greater_than: 0 }

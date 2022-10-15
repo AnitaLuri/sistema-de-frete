@@ -90,9 +90,9 @@ describe 'Usuário inicia uma ordem de serviço'  do
     expect(page).to have_content 'Código do Produto: DELL-7000-TEC10'
     expect(page).to have_content 'Dimensões: 40cm x 20cm x 20cm'
     expect(page).to have_content 'Peso: 2Kg'
-    expect(page).to have_content 'Situação: Em progresso'
     expect(page).to have_content 'Modalidade de Transporte: Motocicleta'
-    expect(page).to have_content 'Veículo placa: ABC1111'
+    expect(page).to have_content 'Veículo placa: FGH4321'
+    expect(page).to have_content 'Prazo de entrega: 12h'
     expect(page).to have_content 'Valor Total: R$ 40,50'
   end
 end
