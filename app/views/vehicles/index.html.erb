@@ -20,12 +20,19 @@
 
 <% @vehicles.each do |v| %>
   <dl class="card" style="width: 18rem;">
-    <dt><strong>Placa: <%= link_to v.plate, v %></strong></dt>
+    <dt><h4><%= Vehicle.human_attribute_name(:plate) %>: 
+    <%= link_to v.plate, v %></h4></dt>
     <dd>
-      Capacidade de carga: <%= v.weight_limit %>Kg
+      <strong><%= Vehicle.human_attribute_name(:weight_limit) %>: </strong>
+      <%= v.weight_limit %>Kg
     </dd>
     <dd>
-      Modalidade de Transporte: <%= v.transport_mode.name %>
+      <strong><%= Vehicle.human_attribute_name(:transport_mode) %>: </strong>
+      <%= v.transport_mode.name %>
+    </dd>
+    <dd>
+      <strong><%= Vehicle.human_attribute_name(:status) %>: </strong>
+      <%= I18n.translate(v.status) %>
     </dd>
   </dl>
 <% end %>
