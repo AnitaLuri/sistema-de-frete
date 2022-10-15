@@ -10,15 +10,18 @@
   <div class="row justify-content-between">
     <% @transport_modes.each do |mode| %>
       <dl class="card" style="width: 18rem;">
-        <dt><strong><%= link_to mode.name, mode, class:"card-body" %></strong></dt>
+        <dt><h4><%= link_to mode.name, mode, class:"card-body" %></h4></dt>
         <dd>
-          Distância mínima: <%= mode.minimum_distance %>Km
+          <strong><%= TransportMode.human_attribute_name(:minimum_distance) %>:  </strong>
+          <%= mode.minimum_distance %>Km
         </dd>
         <dd>  
-          Distância máxima: <%= mode.maximum_distance %>Km
+          <strong><%= TransportMode.human_attribute_name(:maximum_distance) %>:  </strong>
+          <%= mode.maximum_distance %>Km
         </dd>
         <dd>
-          Status: <%= I18n.translate(mode.status) %>
+          <strong><%= TransportMode.human_attribute_name(:status) %>:  </strong>
+          <%= I18n.translate(mode.status) %>
         </dd>
       </dl>
     <% end %>
