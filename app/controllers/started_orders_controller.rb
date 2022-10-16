@@ -18,20 +18,16 @@ class StartedOrdersController < ApplicationController
     @started_order = StartedOrder.new(started_order_params)
     @service_order = ServiceOrder.find(params[:service_order_id])
     @started_order.service_order = @service_order
-
     @vehicles = Vehicle.active.where(["transport_mode_id = ?", @started_order.transport_mode_id, ])
     @vehicle = @vehicles.last
     @started_order.vehicle = @vehicle
     @vehicle.operation!
     @started_order.delivery_time = @started_order.transport_mode.calculate_deadline(@service_order.distance)
     @started_order.total_value = @started_order.transport_mode.value_total(@service_order.weight, @service_order.distance)
-
-    #incluir o prazo de entrega
-    #incluir o valor total
     @service_order.progress!
     @started_order.save
 
-    redirect_to @service_order
+    redirect_to service_order_started_order_path(@service_order, @started_order)
   end
 
 

@@ -3,6 +3,7 @@ class ServiceOrdersController < ApplicationController
 
   def index
     @service_orders = ServiceOrder.all
+    @started_orders = StartedOrder.all
   end
 
   def show
@@ -49,18 +50,7 @@ class ServiceOrdersController < ApplicationController
     end
   end
 
-  # def progress
-  #   @service_order = ServiceOrder.find(params[:id])
-  #   @transport_modes = TransportMode.active.available(@service_order.distance, @service_order.weight) 
-  # end
   
-  # def start
-  #   @service_order = ServiceOrder.find(params[:id])
-  #   @service_order.progress!
-  #   @service_order.update!
-  #   # StartedOrder.create!(order: @service_order, 
-  # end
-
   private
   def service_order_params
     service_order_params = params.require(:service_order).permit(:code, :from, :to, :distance, :recipient,

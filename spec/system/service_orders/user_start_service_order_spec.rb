@@ -25,8 +25,7 @@ describe 'Usuário inicia uma ordem de serviço'  do
  
     login_as(user)
     visit root_path
-    click_on 'Pedidos'
-    click_on 'Pendentes'
+    click_on 'Ordens de Serviço'
     click_on order.code
     click_on 'Iniciar Ordem de Serviço'
  
@@ -71,17 +70,18 @@ describe 'Usuário inicia uma ordem de serviço'  do
     Deadline.create!(start: 0, limit: 10, time: 12, transport_mode: second_transport_mode)
     deadline = Deadline.create!(start: 0, limit: 50, time: 12, transport_mode: transport_mode)
     Deadline.create!(start: 40, limit: 100, time: 48, transport_mode: first_transport_mode)
+   
     order = ServiceOrder.create!(from: 'Av. Paulista, 500', to: 'Rua Jureia, 849', distance: 5, recipient: 'Maria Lucia',
                                 product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2)
  
     login_as(user)
     visit root_path
-    click_on 'Pedidos'
-    click_on 'Pendentes'
+    click_on 'Ordens de Serviço'
     click_on order.code
     click_on 'Iniciar Ordem de Serviço'
     select 'Motocicleta', from: 'Modalidade de Transporte'
     click_on 'Confirmar'
+
 
     expect(page).to have_content 'Origem: Av. Paulista, 500'
     expect(page).to have_content 'Destino: Rua Jureia, 849'

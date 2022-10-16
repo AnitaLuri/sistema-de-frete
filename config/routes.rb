@@ -14,8 +14,6 @@ Rails.application.routes.draw do
   resources :deadlines, only: [:index, :new, :create, :edit, :update]
   resources :service_orders, only: [:index,  :show, :new, :create, :edit, :update] do
     resources :started_orders, only: [:index, :show, :new, :create]
-    post 'progress', on: :member
-    post 'start', on: :member
     post 'concluded', on: :member
   end
 end

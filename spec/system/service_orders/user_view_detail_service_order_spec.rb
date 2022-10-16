@@ -10,7 +10,7 @@ describe 'Usuário ve detalhes uma ordem de serviço'  do
 
     login_as(user)
     visit root_path
-    click_on 'Ordens'
+    click_on 'Ordens de Serviço'
     click_on order.code
 
     expect(page).to have_content 'Origem: Av. Paulista, 500'
@@ -45,13 +45,13 @@ describe 'Usuário ve detalhes uma ordem de serviço'  do
     deadline = Deadline.create!(start: 0, limit: 50, time: 12, transport_mode: transport_mode)
     Deadline.create!(start: 40, limit: 100, time: 48, transport_mode: first_transport_mode)
     order = ServiceOrder.create!(from: 'Av. Paulista, 500', to: 'Rua Jureia, 849', distance: 5, recipient: 'Maria Lucia',
-                                product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2)
+                                product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2, status: 5)
     StartedOrder.create!(service_order: order, transport_mode: transport_mode, vehicle:second_vehicle,
                                 delivery_time: '12', total_value: '40.50', status: 0)
 
     login_as(user)
     visit root_path
-    click_on 'Pedidos'
+    click_on 'Ordens de Serviço'
     click_on 'Iniciados'
     click_on order.code
 
@@ -62,10 +62,10 @@ describe 'Usuário ve detalhes uma ordem de serviço'  do
     expect(page).to have_content 'Código do Produto: DELL-7000-TEC10'
     expect(page).to have_content 'Dimensões: 40cm x 20cm x 20cm'
     expect(page).to have_content 'Peso: 2Kg'
-    expect(page).to have_content 'Situação: Em progresso'
+    expect(page).to have_content 'Situação: Iniciado'
     expect(page).to have_content 'Modalidade de Transporte: Motocicleta'
-    expect(page).to have_content 'Placa do Veículo: ABC1111'
+    expect(page).to have_content 'Veículo placa: FGH4321'
     expect(page).to have_content 'Valor Total: R$ 40,50'
-    expect(page).to have_link 'Encerrar Ordem de Serviço'
+    expect(page).to have_button 'Encerrar Ordem de Serviço'
   end
 end

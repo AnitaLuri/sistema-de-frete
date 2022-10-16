@@ -35,39 +35,11 @@
       <strong><%= ServiceOrder.human_attribute_name(:status) %>:  </strong>
       <%= I18n.translate(@service_order.status) %>
     </dd>
-
-    <% if @service_order.progress? %>
-      <dd>
-        <strong><%= ServiceOrder.human_attribute_name(:transport_mode_id) %>:  </strong>
-        <%= @service_order.started_order.transport_mode.name %>
-      </dd>
-      <dd>
-        <strong><%= ServiceOrder.human_attribute_name(:vehicle_id) %> placa:  </strong>
-        <%= link_to @service_order.started_order.vehicle.plate, @service_order.started_order.vehicle %>
-      </dd>
-      <dd>
-        <strong><%= ServiceOrder.human_attribute_name(:delivery_time) %>:  </strong>
-        <%= @service_order.started_order.delivery_time %>h
-      </dd>
-      <dd>
-        <strong><%= ServiceOrder.human_attribute_name(:total_value) %>:  </strong>
-        <%= number_to_currency(@service_order.started_order.total_value) %>
-      </dd>
-      <dd>
-        <strong><%= ServiceOrder.human_attribute_name(:status) %>:  </strong>
-        <%= @service_order.started_order.status %>
-      </dd>
-    <% end %>
   </div>
   <div>
     <% if @service_order.pending? %>
       <div>
         <%= link_to 'Iniciar Ordem de Serviço', new_service_order_started_order_path(service_order_id: @service_order.id), class:"btn btn-success" %>
-      </div>
-    <% end %>
-    <% if @service_order.progress? %>
-      <div>
-        <%= button_to 'Encerrar Ordem de Serviço', concluded_service_order_path(@service_order.id), class:"btn btn-success"%>
       </div>
     <% end %>
     <br />

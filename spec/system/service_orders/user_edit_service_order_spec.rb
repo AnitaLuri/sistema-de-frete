@@ -10,7 +10,7 @@ describe 'Usuário registra ordem de serviço' do
 
     login_as(user)
     visit root_path
-    click_on 'Ordens'
+    click_on 'Ordens de Serviço'
     click_on order.code
     click_on 'Editar'
 
@@ -26,7 +26,7 @@ describe 'Usuário registra ordem de serviço' do
 
     login_as(user)
     visit root_path
-    click_on 'Ordens'
+    click_on 'Ordens de Serviço'
     click_on order.code
     click_on 'Editar'
     fill_in 'Origem', with: 'Av. Paulista, 600'

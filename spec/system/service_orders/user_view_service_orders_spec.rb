@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário vê ordem de serviço' do
   it 'pendente e deve estar autenticado' do
     visit root_path
-    click_on 'Ordens'
+    click_on 'Ordens de Serviço'
   
     expect(current_path).to eq new_user_session_path
   end
@@ -14,7 +14,7 @@ describe 'Usuário vê ordem de serviço' do
   
     login_as(user)
     visit root_path
-    click_on 'Ordens'
+    click_on 'Ordens de Serviço'
  
     expect(page).to have_content 'Ordens de Serviço Pendentes'
     expect(page).to have_content 'Destinatário: Maria Silva'
