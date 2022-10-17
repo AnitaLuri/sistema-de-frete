@@ -48,12 +48,28 @@
       <%= I18n.translate(@started_order.status) %>
     </dd>
     <dd>
+      <strong><%= StartedOrder.human_attribute_name(:created_at) %>:  </strong>
+      <%= I18n.localize(@started_order.created_at.to_date) %>
+    </dd>
+    <dd>
+      <strong><%= StartedOrder.human_attribute_name(:delivery_day) %>:  </strong>
+      <%= I18n.localize(@started_order.delivery_day) %>
+    </dd>
+    <dd>
       <strong><%= ServiceOrder.human_attribute_name(:total_value) %>:  </strong>
       <%= number_to_currency(@started_order.total_value) %>
     </dd>
+    <div>
+      <% if @started_order.delayed? %>
+        <dd>
+          <strong><%= ServiceOrder.human_attribute_name(:comment) %>:  </strong>
+          <%= @started_order.comment %>
+        </dd>
+      <% end %>
+  </div>
   </div>
   <div>
-    <% if @started_order.progress? %>
+    <% if @started_order.started? %>
       <div>
         <%= button_to 'Encerrar Ordem de Serviço', service_order_started_order_included_path(@started_order.service_order.id, @started_order.id), method: :get, class:"btn btn-success"%>
       </div> 

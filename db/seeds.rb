@@ -87,19 +87,17 @@
 
 # ServiceOrder
   order_one = ServiceOrder.create!(from: 'Av. Paulista, 500', to: 'Rua Jureia, 849', distance: 5, recipient: 'Maria Lucia',
-                              product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2, status: 5)
-  order_two = ServiceOrder.create!(from: 'Av. Paulista, 100', to: 'Rua Jureia, 200', distance: 6, recipient: 'Joana Silva',
-                              product_code: 'XPTO-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2, status: 5)
-  order_three = ServiceOrder.create!(from: 'Av. Paulista, 10', to: 'Rua Jureia, 829', distance: 16, recipient: 'Ana',
-                              product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2, status: 5)
-  ServiceOrder.create!(from: 'Av. Paulista, 6000', to: 'Rua Jureia, 30', distance: 200, recipient: 'Luana',
                               product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2, status: 0)
+  order_two = ServiceOrder.create!(from: 'Av. Paulista, 100', to: 'Rua Jureia, 200', distance: 6, recipient: 'Joana Silva',
+                              product_code: 'XPTO-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2, status: 0)
+  order_three = ServiceOrder.create!(from: 'Av. Paulista, 10', to: 'Rua Jureia, 829', distance: 16, recipient: 'Ana',
+                              product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2, status: 0)
+  ServiceOrder.create!(from: 'Av. Paulista, 6000', to: 'Rua Jureia, 30', distance: 2, recipient: 'Luana',
+                              product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 15, status: 0)
   ServiceOrder.create!(from: 'Av. Paulista, 30', to: 'Rua Jureia, 8491', distance: 50, recipient: 'Rafaela',
                               product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2, status: 0)
   ServiceOrder.create!(from: 'Av. Paulista, 500', to: 'Rua Jureia, 6', distance: 1000, recipient: 'Bruna',
-                              roduct_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2, status: 0)
+                              product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2, status: 0)
                               
-# StartedOrder  
-  StartedOrder.create!(service_order: order_one, transport_mode: transport_mode, vehicle:second_vehicle,
-                              delivery_time: '12', total_value: '40.50', status: 0)
+
  

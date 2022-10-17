@@ -5,5 +5,5 @@ class StartedOrder < ApplicationRecord
 
   validates :delivery_time, :total_value, presence: true
  
-  enum status: { progress: 0, concluded: 5, delayed: 9}
+  enum status: { started: 0, concluded: 5, delayed: 9}
 end

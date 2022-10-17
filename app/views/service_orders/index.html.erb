@@ -2,12 +2,11 @@
 
 
 <%= link_to 'Cadastrar Nova Ordem', new_service_order_path, class:"btn btn-link" %>
-
 <br />
 <br />
 
 
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs" >
   <li class="nav-item">
     <button class="nav-link active" aria-current="page"  type="button" data-toggle="collapse" data-target="#collapsePending" aria-expanded="false" aria-controls="collapsePending">
       Pendentes
@@ -43,24 +42,24 @@
     <% end %>
   </div>
 </div>
+
 <div class="collapse" id="collapseProgress">
   <div class="card card-body">
     <% @started_orders.each do |started_order|%>
-      
+      <% if started_order.started? %>
         <dl class="card">
           <dt><strong><%= ServiceOrder.human_attribute_name(:code) %>: </strong>
           <%= link_to started_order.service_order.code,  service_order_started_order_path(started_order.service_order.id, started_order.id) %></dt>
-
           <dd><strong><%= ServiceOrder.human_attribute_name(:recipient) %>: </strong>
           <%= started_order.service_order.recipient %></dd>
-
           <dd><strong><%= ServiceOrder.human_attribute_name(:status) %>: </strong>
-          <%= I18n.translate(started_order.service_order.status) %></dd>
+          <%= I18n.translate(started_order.status) %></dd>
         </dl>
-     
+      <% end %>
     <% end %>
   </div>
 </div>
+
 <div class="collapse" id="collapseConcluded">
   <div class="card card-body">
     <% @started_orders.each do |started_order|%>
@@ -73,7 +72,7 @@
           <%= started_order.service_order.recipient %></dd>
 
           <dd><strong><%= ServiceOrder.human_attribute_name(:status) %>: </strong>
-          <%= I18n.translate(started_order.service_order.status) %></dd>
+          <%= I18n.translate(started_order.status) %></dd>
         </dl>
       <% end %>
     <% end %>

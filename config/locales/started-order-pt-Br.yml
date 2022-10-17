@@ -1,5 +1,5 @@
 pt-BR:
-  progress: 'Iniciado'
+  started: 'Iniciado'
   concluded: 'Concluído'
   delayed: 'Concluído com atraso'
   activerecord:
