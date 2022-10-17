@@ -52,7 +52,7 @@ describe 'Usuário ve detalhes uma ordem de serviço'  do
     login_as(user)
     visit root_path
     click_on 'Ordens de Serviço'
-    click_on 'Iniciados'
+    click_on 'Iniciadas'
     click_on order.code
 
     expect(page).to have_content 'Origem: Av. Paulista, 500'

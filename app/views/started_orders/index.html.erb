@@ -9,7 +9,7 @@
     <%= started_order.service_order.recipient %></dd>
 
     <dd><strong><%= ServiceOrder.human_attribute_name(:status) %>: </strong>
-    <%= I18n.translate(started_order.service_order.status) %></dd>
+    <%= I18n.translate(started_order.status) %></dd>
   </dl>
 
 <% end %>

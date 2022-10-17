@@ -20,7 +20,7 @@ class StartedOrdersController < ApplicationController
     @started_order.service_order = @service_order
     @vehicles = Vehicle.active.where(["transport_mode_id = ?", @started_order.transport_mode_id, ])
     if @vehicles.empty?
-
+      
     end
     @vehicle = @vehicles.last
     @vehicle.operation!
@@ -39,22 +39,22 @@ class StartedOrdersController < ApplicationController
     @started_order.delivery_day = Time.zone.today 
 
     days = (@started_order.delivery_time)/24
-    maximum_time = (@started_order.created_at.to_date) + days
+    maximum_time = (@started_order.created_day) + days
 
     if @started_order.delivery_day > maximum_time 
       @started_order.delayed!
     else
       @started_order.concluded!
     end
-
   end
   def concluded
+    
     @started_order = StartedOrder.find(params[:started_order_id])
     @vehicle =  @started_order.vehicle
     @vehicle.active!
-    @started_order.concluded!
     @service_order = ServiceOrder.find(params[:service_order_id])
     @service_order.closed!
+    @started_order.update!(comment: params[:comment])
 
     redirect_to service_orders_path
   end
@@ -62,7 +62,7 @@ class StartedOrdersController < ApplicationController
 
   private
   def started_order_params
-    started_order_params = params.require(:started_order).permit(:service_order_id, :transport_mode_id, 
-                                                                :vehicle_id, :delivery_time, :total_value, :status)
+    started_order_params = params.require(:started_order).permit(:service_order_id, :transport_mode_id, :vehicle_id,
+                                                                 :delivery_time, :total_value, :created_day, :comment, :status)
   end
 end

@@ -25,7 +25,7 @@ pt-BR:
         vehicle: 'Veículo'
         vehicle_id: 'Veículo'
         total_value: 'Valor Total'
-        created_at: 'Iniciado em'
+        created_day: 'Iniciado em'
         delivery_day: 'Dia da Entrega'
         comment: 'Justificativa de atraso'
         

@@ -49,7 +49,7 @@
     </dd>
        <dd>
       <strong>Iniciado em:  </strong>
-      <%= I18n.localize(@started_order.created_at.to_date) %>
+      <%= I18n.localize(@started_order.created_day) %>
     </dd>
     <dd>
       <strong><%= ServiceOrder.human_attribute_name(:delivery_time) %>:  </strong>
@@ -71,7 +71,7 @@
   <% if @started_order.delayed? %>
     <%= form_with(url: service_order_started_order_concluded_path(@service_order.id, @started_order.id))  do |form| %>
       
-      <strong><%= form.label 'Justificativa de atraso' %></strong><br />
+      <strong><%= form.label :comment, 'Justificativa de Atraso' %></strong><br />
       <%= form.text_area :comment %>
       <br />
 

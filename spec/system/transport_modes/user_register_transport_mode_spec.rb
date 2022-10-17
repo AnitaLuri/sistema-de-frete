@@ -18,8 +18,8 @@ describe 'Usuario cadastra modalidade de transporte' do
     expect(current_path).to eq root_path
     expect(page).to have_content 'Modalidade de Transporte criada com sucesso'
     expect(page).to have_content 'Motocicleta'
-    expect(page).to have_content 'Distância mínima: 100Km'
-    expect(page).to have_content 'Distância máxima: 1000Km'
+    expect(page).to have_content 'Distância Mínima: 100Km'
+    expect(page).to have_content 'Distância Máxima: 1000Km'
   end
   it 'com mesmo nome' do
     user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 5)

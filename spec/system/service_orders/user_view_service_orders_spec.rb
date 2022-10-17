@@ -16,7 +16,7 @@ describe 'Usuário vê ordem de serviço' do
     visit root_path
     click_on 'Ordens de Serviço'
  
-    expect(page).to have_content 'Ordens de Serviço Pendentes'
+    expect(page).to have_content 'Ordens de Serviço'
     expect(page).to have_content 'Destinatário: Maria Silva'
     expect(page).to have_content 'Situação: Pendente'
   end

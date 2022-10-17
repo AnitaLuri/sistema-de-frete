@@ -6,4 +6,10 @@ class StartedOrder < ApplicationRecord
   validates :delivery_time, :total_value, presence: true
  
   enum status: { started: 0, concluded: 5, delayed: 9}
+
+  before_validation :generate_date, on: :create
+
+  def generate_date
+    self.created_day = Time.zone.today 
+  end
 end

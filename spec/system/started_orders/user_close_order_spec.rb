@@ -40,8 +40,10 @@ describe 'Usuário encerra uma ordem de serviço iniciada' do
     deadline = Deadline.create!(start: 0, limit: 50, time: 12, transport_mode: transport_mode)
     order = ServiceOrder.create!(from: 'Av. Paulista, 500', to: 'Rua Jureia, 849', distance: 5, recipient: 'Maria Lucia',
                                 product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2, status: 5)
-    StartedOrder.create!(service_order: order, transport_mode: transport_mode, vehicle:second_vehicle,
-                                delivery_time: '12', total_value: '40.50', status: 0, created_at: (Time.now - 2.days))
+    
+    started = StartedOrder.create!(service_order: order, transport_mode: transport_mode, vehicle:second_vehicle,
+                                delivery_time: '12', total_value: '40.50', status: 0)
+    started.update!(created_day: 1.day.ago)
 
     login_as(user)
     visit root_path
@@ -49,10 +51,11 @@ describe 'Usuário encerra uma ordem de serviço iniciada' do
     click_on 'Iniciadas'
     click_on order.code
     click_on 'Encerrar Ordem de Serviço'
-    fill_in 'Justificativa de Atraso', with: 'Endereço preenchido errado'
+    fill_in 'Justificativa de Atraso', with: 'Endereço infomado errado'
     click_on 'Confirmar'
-    
-    expect(page).to have_content "Dia da Entrega: #{I18n.localize(Date.today)} "
+
+    expect(page).to have_content "Código: #{order.code}"
     expect(page).to have_content "Situação: Concluído com atraso"  
+    
   end
 end

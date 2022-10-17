@@ -48,13 +48,16 @@
       <%= I18n.translate(@started_order.status) %>
     </dd>
     <dd>
-      <strong><%= StartedOrder.human_attribute_name(:created_at) %>:  </strong>
-      <%= I18n.localize(@started_order.created_at.to_date) %>
+      <strong><%= StartedOrder.human_attribute_name(:created_day) %>:  </strong>
+      <%= I18n.localize(@started_order.created_day) %>
     </dd>
-    <dd>
-      <strong><%= StartedOrder.human_attribute_name(:delivery_day) %>:  </strong>
-      <%= I18n.localize(@started_order.delivery_day) %>
-    </dd>
+
+    <% if @started_order.concluded? || @started_order.delayed? %>
+      <dd>
+        <strong><%= StartedOrder.human_attribute_name(:delivery_day) %>:  </strong>
+        <%= I18n.localize(@started_order.delivery_day) %>
+      </dd>
+    <% end %>
     <dd>
       <strong><%= ServiceOrder.human_attribute_name(:total_value) %>:  </strong>
       <%= number_to_currency(@started_order.total_value) %>
@@ -62,7 +65,7 @@
     <div>
       <% if @started_order.delayed? %>
         <dd>
-          <strong><%= ServiceOrder.human_attribute_name(:comment) %>:  </strong>
+          <strong><%= StartedOrder.human_attribute_name(:comment) %>:  </strong>
           <%= @started_order.comment %>
         </dd>
       <% end %>
