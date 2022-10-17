@@ -25,7 +25,7 @@
       <%= order.product_code %>
     </dd>
 
-    <% if order.progress? %>
+    <% if order.progress? || order.closed?  %>
       <dd>
         <strong><%= StartedOrder.human_attribute_name(:vehicle_id) %> placa:  </strong>
         <%= order.started_order.vehicle.plate %>
@@ -46,6 +46,22 @@
         <strong><%= ServiceOrder.human_attribute_name(:total_value) %>:  </strong>
         <%= number_to_currency(order.started_order.total_value) %>
       </dd>
+      <% if order.started_order.concluded? %>
+        <dd>
+          <strong><%= StartedOrder.human_attribute_name(:delivery_day) %>: </strong>
+          <%= I18n.localize(order.started_order.delivery_day) %>
+        </dd>
+      <% end %>
+      <% if order.started_order.delayed? %>
+        <dd>
+          <strong><%= StartedOrder.human_attribute_name(:delivery_day) %>: </strong>
+          <%= I18n.localize(order.started_order.delivery_day) %>
+        </dd>
+        <dd>
+          <strong><%= StartedOrder.human_attribute_name(:comment) %>: </strong>
+          <%= order.started_order.comment %>
+        </dd>
+      <% end %>
     <% else %>
       <p> Pedido ainda não foi iniciado. </p>
     <% end %>
