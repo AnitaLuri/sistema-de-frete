@@ -4,6 +4,8 @@ class StartedOrder < ApplicationRecord
   belongs_to :vehicle
 
   validates :delivery_time, :total_value, presence: true
+  validates :delivery_time, numericality: { greater_than: 11 }
+
  
   enum status: { started: 0, concluded: 5, delayed: 9}
 
