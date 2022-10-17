@@ -42,5 +42,15 @@ RSpec.describe DistancePrice, type: :model do
       #Assert
       expect(price.valid?).to eq false
     end
+    it 'falso quando a preço é zero' do
+      #Arrange
+      first_mode = TransportMode.create!(name: 'Caminhão', minimum_distance: 400, maximum_distance: 5000, 
+                                        minimum_weight: 1000, maximum_weight: 15000, fixed_value: '500,00') 
+      price = DistancePrice.new(initial_distance: 1000, ending_distance: 1200, price: '0', 
+                                        transport_mode: first_mode)
+      #Act
+      #Assert
+      expect(price.valid?).to eq false
+    end
   end
 end
