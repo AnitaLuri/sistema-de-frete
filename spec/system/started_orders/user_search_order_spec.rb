@@ -14,7 +14,7 @@ describe 'Visitante busca uma ordem de serviço' do
     order = ServiceOrder.create!(from: 'Av. Paulista, 500', to: 'Rua Jureia, 849', distance: 5, recipient: 'Maria Lucia',
                                 product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2, status: 5)
     started = StartedOrder.create!(service_order: order, transport_mode: transport_mode, vehicle:second_vehicle,
-                                delivery_time: '24', total_value: '40.50', status: 0)
+                                delivery_time: '24', total_value: '40.50', status: 0, created_at: Date.today)
 
     visit root_path
     fill_in 'Buscar Ordem de Serviço', with: started.service_order.code
@@ -28,7 +28,7 @@ describe 'Visitante busca uma ordem de serviço' do
     expect(page).to have_content 'Situação: Iniciado'
     expect(page).to have_content 'Veículo placa: FGH4321'
     expect(page).to have_content 'Valor Total: R$ 40,50'
-    expect(page).to have_content 'Prazo: 24h'
-    expect(page).to have_content "Iniciado em: #{Time.zone.today}"
+    expect(page).to have_content 'Prazo de entrega: 24h'
+    expect(page).to have_content "Iniciado em: "
   end
 end

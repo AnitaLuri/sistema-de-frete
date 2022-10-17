@@ -46,7 +46,7 @@
 <div class="collapse" id="collapseProgress">
   <div class="card card-body">
     <% @started_orders.each do |started_order|%>
-      <% if started_order.progress? %>
+      
         <dl class="card">
           <dt><strong><%= ServiceOrder.human_attribute_name(:code) %>: </strong>
           <%= link_to started_order.service_order.code,  service_order_started_order_path(started_order.service_order.id, started_order.id) %></dt>
@@ -57,7 +57,7 @@
           <dd><strong><%= ServiceOrder.human_attribute_name(:status) %>: </strong>
           <%= I18n.translate(started_order.service_order.status) %></dd>
         </dl>
-      <% end %>
+     
     <% end %>
   </div>
 </div>

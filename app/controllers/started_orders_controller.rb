@@ -46,10 +46,6 @@ class StartedOrdersController < ApplicationController
     @service_order.closed!
   end
 
-  def search
-    @search = params['query']
-    @started_orders = StartedOrder.where("service_order_id.code LIKE ?", "%#{@search}%")
-  end
 
   private
   def started_order_params

@@ -50,6 +50,12 @@ class ServiceOrdersController < ApplicationController
     end
   end
 
+  def search
+    @search = params['query']
+    @service_orders = ServiceOrder.where("code LIKE ?", "%#{@search}%")
+    @started_orders = StartedOrder.all
+  end
+
   
   private
   def service_order_params

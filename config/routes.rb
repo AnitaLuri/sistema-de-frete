@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :started_orders, only: [:index, :show, :new, :create] do
       get 'included' 
       post 'concluded'
-      get 'search', on: :collection
     end
+    get 'search', on: :collection
   end
 end
