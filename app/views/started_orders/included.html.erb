@@ -1,6 +1,10 @@
+<h2>Encerrar Ordem de Serviço</h2>
+<br />
+<br />
+
 <dl class="card">
   <dt>
-    <h2>Detalhes da <%= ServiceOrder.model_name.human %>: <%= @started_order.service_order.code %></h2>
+    <h3>Detalhes da <%= ServiceOrder.model_name.human %>: <%= @started_order.service_order.code %></h3>
   </dt>
   <div>
     <dd>
@@ -40,24 +44,38 @@
       <%= @started_order.vehicle.plate %>
     </dd>
     <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:total_value) %>:  </strong>
+      <%= number_to_currency(@started_order.total_value) %>
+    </dd>
+       <dd>
+      <strong>Iniciado em:  </strong>
+      <%= I18n.localize(@started_order.created_at.to_date) %>
+    </dd>
+    <dd>
       <strong><%= ServiceOrder.human_attribute_name(:delivery_time) %>:  </strong>
       <%= @started_order.delivery_time %>h
+    </dd>
+    <dd>
+      <strong><%= StartedOrder.human_attribute_name(:delivery_day) %>:  </strong>
+      <%= I18n.localize(@started_order.delivery_day) %>
     </dd>
     <dd>
       <strong><%= ServiceOrder.human_attribute_name(:status) %>:  </strong>
       <%= I18n.translate(@started_order.status) %>
     </dd>
-    <dd>
-      <strong><%= ServiceOrder.human_attribute_name(:total_value) %>:  </strong>
-      <%= number_to_currency(@started_order.total_value) %>
-    </dd>
-  </div>
-  <div>
-    <% if @started_order.progress? %>
-      <div>
-        <%= button_to 'Encerrar Ordem de Serviço', service_order_started_order_included_path(@started_order.service_order.id, @started_order.id), method: :get, class:"btn btn-success"%>
-      </div> 
-    <% end %>
-    <br />
   </div>
 </dl>
+
+
+<div>
+  <% if @started_order.delayed? %>
+    <%= form_with(url: service_order_started_order_concluded_path(@service_order.id, @started_order.id))  do |form| %>
+      
+      <strong><%= form.label 'Justificativa de atraso' %></strong><br />
+      <%= form.text_area :comment %>
+      <br />
+
+      <%= form.submit 'Confirmar' %>
+    <% end %>
+  <% end %>
+</div>

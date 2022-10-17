@@ -1,6 +1,7 @@
 pt-BR:
   progress: 'Iniciado'
   concluded: 'Concluído'
+  delayed: 'Concluído com atraso'
   activerecord:
     models:
       started_order: 
@@ -24,5 +25,7 @@ pt-BR:
         vehicle: 'Veículo'
         vehicle_id: 'Veículo'
         total_value: 'Valor Total'
-  
+        created_at: 'Iniciado em'
+        delivery_day: 'Dia da Entrega'
+        comment: 'Justificativa de atraso'
         

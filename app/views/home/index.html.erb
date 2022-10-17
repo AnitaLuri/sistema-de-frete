@@ -1,3 +1,14 @@
+<br />
+<div>
+  <%= form_with(url: search_service_order_started_orders_path(:service_order_id), method: :get) do |f| %>
+    <%= f.label :query, 'Buscar Ordem de Serviço' %>
+    <%= f.text_field :query %>
+    <%= f.submit 'Buscar' %>
+  <% end %>
+</div>
+<br />
+<br />
+
 <h2>Modalidades de Transporte</h2>
 
 <% if @transport_modes.empty? %>

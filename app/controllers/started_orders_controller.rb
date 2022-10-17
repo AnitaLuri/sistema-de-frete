@@ -1,5 +1,5 @@
 class StartedOrdersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create, :included, :concluded]
 
   def index
     @started_orders = StartedOrder.all
@@ -30,6 +30,26 @@ class StartedOrdersController < ApplicationController
     redirect_to service_order_started_order_path(@service_order, @started_order)
   end
 
+  def included
+    @started_order = StartedOrder.find(params[:started_order_id])
+    @service_order = ServiceOrder.find(params[:service_order_id])
+    @started_order.delivery_day = Time.zone.today 
+    
+    @started_order.delivery_day - @started_order.created_at 
+  end
+  def concluded
+    @started_order = StartedOrder.find(params[:id])
+    @vehicle =  @started_order.vehicle
+    @vehicle.active!
+    @started_order.concluded!
+    @service_order = ServiceOrder.find(params[:service_order_id])
+    @service_order.closed!
+  end
+
+  def search
+    @search = params['query']
+    @started_orders = StartedOrder.where("service_order_id.code LIKE ?", "%#{@search}%")
+  end
 
   private
   def started_order_params

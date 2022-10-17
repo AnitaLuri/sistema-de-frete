@@ -1,0 +1,45 @@
+<h2>Resultado da busca: <%= @search %> </h2>
+
+
+<% @started_orders.each do |order| %>
+<dl>
+  <dt>
+    <h2>Detalhes da <%= ServiceOrder.model_name.human %>: <%= @started_order.service_order.code %></h2>
+  </dt>
+  <div>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:from) %>: </strong>
+      <%= order.service_order.from %>
+    </dd>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:to) %>: </strong>
+      <%= order.service_order.to %>
+    </dd>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:recipient) %>:  </strong>
+      <%= order.service_order.recipient %>
+    </dd>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:product_code) %>:  </strong>
+      <%= order.service_order.product_code %>
+    </dd>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:vehicle_id) %> placa:  </strong>
+      <%= @started_order.vehicle.plate %>
+    </dd>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:delivery_time) %>:  </strong>
+      <%= @started_order.delivery_time %>h
+    </dd>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:status) %>:  </strong>
+      <%= I18n.translate(@started_order.status) %>
+    </dd>
+    <dd>
+      <strong><%= ServiceOrder.human_attribute_name(:total_value) %>:  </strong>
+      <%= number_to_currency(@started_order.total_value) %>
+    </dd>
+    </div>
+  </dl>
+  <br />
+<% end %>

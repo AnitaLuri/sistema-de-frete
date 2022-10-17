@@ -1,7 +1,7 @@
 pt-BR:
   pending: 'Pendente'
   progress: 'Iniciado'
-  concluded: 'Concluído'
+  closed: 'Encerrado'
   activerecord:
     models:
       service_order: 
@@ -26,3 +26,4 @@ pt-BR:
         vehicle_id: 'Veículo'
         total_value: 'Valor Total'
         delivery_time: 'Prazo de entrega'
+        comment: 'Justificativa de atraso'

@@ -13,7 +13,10 @@ Rails.application.routes.draw do
   resources :distance_prices, only: [:index, :new, :create, :edit, :update]
   resources :deadlines, only: [:index, :new, :create, :edit, :update]
   resources :service_orders, only: [:index,  :show, :new, :create, :edit, :update] do
-    resources :started_orders, only: [:index, :show, :new, :create]
-    post 'concluded', on: :member
+    resources :started_orders, only: [:index, :show, :new, :create] do
+      get 'included' 
+      post 'concluded'
+      get 'search', on: :collection
+    end
   end
 end

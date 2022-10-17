@@ -1,5 +1,5 @@
 class ServiceOrdersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index, :new, :create, :included, :concluded]
 
   def index
     @service_orders = ServiceOrder.all

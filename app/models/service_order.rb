@@ -6,7 +6,7 @@ class ServiceOrder < ApplicationRecord
             :weight, :status, presence: true
   validates :weight, :width, :height, :depth, numericality: { greater_than: 0 }
 
-  enum status: { pending: 0, progress: 5, concluded: 9}
+  enum status: { pending: 0, progress: 5, closed: 9}
 
   before_validation :generate_code, on: :create
   

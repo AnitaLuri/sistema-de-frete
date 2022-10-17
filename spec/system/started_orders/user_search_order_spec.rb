@@ -1,8 +1,7 @@
 require 'rails_helper'
 
-describe 'Usuário encerra uma ordem de serviço iniciada' do
-  it 'dentro do prazo' do 
-    user = User.create!(name: 'Maria', email: 'teste@sistemadefrete.com.br', password: 'password', profile: 0)
+describe 'Visitante busca uma ordem de serviço' do
+  it 'com sucesso um pedido iniciado' do
     transport_mode = TransportMode.create!(name: 'Motocicleta', minimum_distance: 1, maximum_distance: 60, 
                                 minimum_weight: 1, maximum_weight: 20, fixed_value: '30,00')
     first_vehicle = Vehicle.create!(plate: 'ABC1111', brand: 'Yamaha', model: 'YBR', year: 2020, 
@@ -14,24 +13,22 @@ describe 'Usuário encerra uma ordem de serviço iniciada' do
     deadline = Deadline.create!(start: 0, limit: 50, time: 24, transport_mode: transport_mode)
     order = ServiceOrder.create!(from: 'Av. Paulista, 500', to: 'Rua Jureia, 849', distance: 5, recipient: 'Maria Lucia',
                                 product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2, status: 5)
-    StartedOrder.create!(service_order: order, transport_mode: transport_mode, vehicle:second_vehicle,
+    started = StartedOrder.create!(service_order: order, transport_mode: transport_mode, vehicle:second_vehicle,
                                 delivery_time: '24', total_value: '40.50', status: 0)
 
-    login_as(user)
     visit root_path
-    click_on 'Ordens de Serviço'
-    click_on 'Iniciadas'
-    click_on order.code
-    click_on 'Encerrar Ordem de Serviço'
+    fill_in 'Buscar Ordem de Serviço', with: started.service_order.code
+    click_on 'Buscar'
 
-    expect(page).to have_content "Data de conclusão: #{Time.zone.today}"
-    expect(page).to have_content "Encerrada no prazo"
-    expect(page).to have_content "Situação: Encerrada"
-
-    #deve registrar a data de conclusao
-    #deve registrar se foi dentro do prazo
-    #se em atraso deve abrir um area de comentario para justificar
-  
+    expect(page).to have_content 'Resultado da busca'
+    expect(page).to have_content 'Origem: Av. Paulista, 500'
+    expect(page).to have_content 'Destino: Rua Jureia, 849'
+    expect(page).to have_content 'Destinatário: Maria Lucia'
+    expect(page).to have_content 'Código do Produto: DELL-7000-TEC10'
+    expect(page).to have_content 'Situação: Iniciado'
+    expect(page).to have_content 'Veículo placa: FGH4321'
+    expect(page).to have_content 'Valor Total: R$ 40,50'
+    expect(page).to have_content 'Prazo: 24h'
+    expect(page).to have_content "Iniciado em: #{Time.zone.today}"
   end
-
 end
