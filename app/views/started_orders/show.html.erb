@@ -74,7 +74,7 @@
   <div>
     <% if @started_order.started? %>
       <div>
-        <%= button_to 'Encerrar Ordem de Serviço', service_order_started_order_included_path(@started_order.service_order.id, @started_order.id), method: :get, class:"btn btn-success"%>
+        <%= button_to 'Encerrar Ordem de Serviço', service_order_started_order_included_path(@started_order.service_order.id, @started_order.id), method: :get, class:"btn btn-secondary"%>
       </div> 
     <% end %>
     <br />

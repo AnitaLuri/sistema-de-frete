@@ -23,6 +23,7 @@
     </button>
   </li>
 </ul>
+<br />
 
 <div class="collapse" id="collapsePending">
   <div class="card border-primary mb-3" >
@@ -30,18 +31,19 @@
       <% if service_order.pending? %>
         <dl class="card">
           <dt><strong><%= ServiceOrder.human_attribute_name(:code) %>: </strong>
-          <%= link_to service_order.code, service_order %></dt>
+          <%= link_to service_order.code, service_order, class:"link-primary" %></dt>
 
           <dd><strong><%= ServiceOrder.human_attribute_name(:recipient) %>: </strong>
           <%= service_order.recipient %></dd>
 
-          <dd><strong><%= ServiceOrder.human_attribute_name(:status) %>: </strong>
+          <dd class="text-primary"><strong><%= ServiceOrder.human_attribute_name(:status) %>: </strong>
           <%= I18n.translate(service_order.status) %></dd>
         </dl>
       <% end %>
     <% end %>
   </div>
 </div>
+<br />
 
 <div class="collapse" id="collapseProgress">
   <div class="card border-success mb-3">
@@ -49,16 +51,17 @@
       <% if started_order.started? %>
         <dl class="card">
           <dt><strong><%= ServiceOrder.human_attribute_name(:code) %>: </strong>
-          <%= link_to started_order.service_order.code,  service_order_started_order_path(started_order.service_order.id, started_order.id) %></dt>
+          <%= link_to started_order.service_order.code,  service_order_started_order_path(started_order.service_order.id, started_order.id), class:"link-success" %></dt>
           <dd><strong><%= ServiceOrder.human_attribute_name(:recipient) %>: </strong>
           <%= started_order.service_order.recipient %></dd>
-          <dd><strong><%= ServiceOrder.human_attribute_name(:status) %>: </strong>
+          <dd class="text-success"><strong><%= ServiceOrder.human_attribute_name(:status) %>: </strong>
           <%= I18n.translate(started_order.status) %></dd>
         </dl>
       <% end %>
     <% end %>
   </div>
 </div>
+<br />
 
 <div class="collapse" id="collapseConcluded">
   <div class="card border-secondary mb-3">
@@ -66,12 +69,12 @@
       <% if started_order.concluded? || started_order.delayed? %>
         <dl class="card">
           <dt><strong><%= ServiceOrder.human_attribute_name(:code) %>: </strong>
-          <%= link_to started_order.service_order.code,  service_order_started_order_path(started_order.service_order.id, started_order.id) %></dt>
+          <%= link_to started_order.service_order.code,  service_order_started_order_path(started_order.service_order.id, started_order.id), class:"link-secondary" %></dt>
 
           <dd><strong><%= ServiceOrder.human_attribute_name(:recipient) %>: </strong>
           <%= started_order.service_order.recipient %></dd>
 
-          <dd><strong><%= ServiceOrder.human_attribute_name(:status) %>: </strong>
+          <dd class="text-secondary"><strong><%= ServiceOrder.human_attribute_name(:status) %>: </strong>
           <%= I18n.translate(started_order.status) %></dd>
         </dl>
       <% end %>
