@@ -42,7 +42,7 @@ RSpec.describe StartedOrder, type: :model do
       order = ServiceOrder.create!(from: 'Av. Paulista, 500', to: 'Rua Jureia, 849', distance: 5, recipient: 'Maria Lucia',
                         product_code: 'DELL-7000-TEC10', width: 40, height: 20, depth: 20, weight: 2, status: 5)
       started_order = StartedOrder.new(service_order: order, transport_mode: transport_mode, vehicle: vehicle,
-                          delivery_time: '0', total_value: '0', status: 0)
+                          delivery_time: '0', total_value: '40.50', status: 0)
      
       expect(started_order.valid?).to eq false
     end

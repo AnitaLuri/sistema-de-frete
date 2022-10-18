@@ -65,17 +65,26 @@
     </dd>
   </div>
 </dl>
+<br />
 
+<% if(@started_order.errors.any?) %>
+  <p>Verifique os erros: </p>
+  <ul>
+    <% @started_order.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
 
-<div>
+<div class="mb-3">
   <% if @started_order.delayed? %>
     <%= form_with(url: service_order_started_order_concluded_path(@service_order.id, @started_order.id))  do |form| %>
       
-      <strong><%= form.label :comment, 'Justificativa de Atraso' %></strong><br />
-      <%= form.text_area :comment %>
+      <strong><%= form.label :comment, 'Justificativa de Atraso', for:"comment", class:"form-label" %></strong><br />
+      <%= form.text_area :comment, class:"form-control", id:"comment", rows:"3" %>
       <br />
 
-      <%= form.submit 'Confirmar' %>
+      <%= form.submit 'Confirmar', class:"btn btn-secondary" %>
     <% end %>
   <% end %>
 </div>

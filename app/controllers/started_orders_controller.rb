@@ -56,9 +56,14 @@ class StartedOrdersController < ApplicationController
   def concluded 
     @started_order = StartedOrder.find(params[:started_order_id])
     @service_order = ServiceOrder.find(params[:service_order_id])
-    @started_order.update!(comment: params[:comment])
-
-    redirect_to service_orders_path
+    if @started_order.delayed?
+      @started_order.comment = ''
+    end
+    if @started_order.update(comment: params[:comment])
+      redirect_to service_orders_path
+    else
+      render 'included'
+    end
   end
 
 
