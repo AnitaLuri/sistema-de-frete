@@ -8,7 +8,7 @@
 
 <ul class="nav nav-tabs" >
   <li class="nav-item">
-    <button class="btn btn-outline-primary" aria-current="true"  type="button" data-toggle="collapse" data-target="#collapsePending" aria-expanded="false" aria-controls="collapsePending">
+    <button class="btn btn-outline-primary" aria-current="true"  type="button" data-toggle="collapse" data-target="#collapsePending" aria-expanded="true" aria-controls="collapsePending">
       Pendentes
     </button>
   </li>
@@ -25,7 +25,7 @@
 </ul>
 <br />
 
-<div class="collapse" id="collapsePending">
+<div class="collapse show active" id="collapsePending" >
   <div class="card border-primary mb-3" >
     <% @service_orders.each do |service_order|%>
       <% if service_order.pending? %>

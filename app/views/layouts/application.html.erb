@@ -13,7 +13,7 @@
   </head>
 
 
-  <body>
+  <body class='body'>
     <header>
       <%= render 'layouts/nav' %>
     </header>
@@ -22,9 +22,14 @@
         <%= alert %>
         <%= notice %>
       </div>
+      <br />
       <div class='container'>
         <%= yield %>
       </div>
+      <br />
     </main>
   </body>
+  <footer>
+    <p>Sistema de Frete - 2022</p>
+  </footer>
 </html>

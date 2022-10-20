@@ -1,1 +1,27 @@
-@import 'bootstrap'
+@import 'bootstrap';
+
+.body {
+  background-color: rgb(242, 244, 247);
+}
+
+.navbar {
+  background-color: rgb(56, 56, 56);
+}
+
+.navbar-brand {
+  color:white;
+}
+
+.nav-link {
+  color: rgb(242, 244, 247);
+}
+
+
+footer {
+  background-color: rgb(242, 244, 247);
+  color: rgb(56, 56, 56); 
+  text-align: center;
+  bottom: 0;
+  position: fixed;
+  width: 90%;
+}
